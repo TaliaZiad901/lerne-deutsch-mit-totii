@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 3 Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h2>Choose the correct answer</h2>
+
+<h2>1. Was bedeutet "Welcome" in Deutsch?</h2>
+
+<input type="radio" name="q1" value="correct"> Willkommen<br>
+<input type="radio" name="q1" value="wrong"> Hallo<br>
+<input type="radio" name="q1" value="wrong"> Guten Abend<br><br>
+
+<h2>2. Was bedeutet "Good afternoon" in Deutsch?</h2>
+
+<input type="radio" name="q2" value="correct"> Guten Tag<br>
+<input type="radio" name="q2" value="wrong"> Guten Abend<br>
+<input type="radio" name="q2" value="wrong"> Guten Morgen<br><br>
+
+<h2>3. Was bedeutet "Good evening" in Deutsch?</h2>
+
+<input type="radio" name="q3" value="wrong"> Bis Morgen<br>
+<input type="radio" name="q3" value="wrong"> Gute Nacht<br>
+<input type="radio" name="q3" value="correct"> Guten Abend<br><br>
+
+<h2>4. Was bedeutet "Good bye Habiba" in Deutsch?</h2>
+
+<input type="radio" name="q4" value="wrong"> Auf Wiedersehen<br>
+<input type="radio" name="q4" value="correct"> Tschüss<br>
+<input type="radio" name="q4" value="wrong"> Bis Morgen<br><br>
+
+<h2>5. Was bedeutet "Guten Morgen" in English?</h2>
+
+<input type="radio" name="q5" value="correct"> Good morning<br>
+<input type="radio" name="q5" value="wrong"> Good evening<br>
+<input type="radio" name="q5" value="wrong"> Good bye<br><br>
+
+<hr>
+
+<h2>Complete</h2>
+
+<h2>6. Can you tell me "Guten Morgen" Begrüßung oder Abschied?</h2>
+<input type="text" id="q6"><br><br>
+
+<h2>7. Can you tell me "Bis Morgen" Begrüßung oder Abschied?</h2>
+<input type="text" id="q7"><br><br>
+
+<h2>8. Can you tell me Abschied in Deutsch?</h2>
+<input type="text" id="q8"><br><br>
+
+<h2>9. Can you tell me Begrüßung in Deutsch?</h2>
+<input type="text" id="q9"><br><br>
+
+<h2>10. Can you tell me how we can say bye-bye in formal and informal?</h2>
+<input type="text" id="q10"><br><br>
+
+<button type="button" onclick="checkScore()">
+Submit Quiz
+</button>
+
+<h2 id="result"></h2>
+<script>
+function checkScore() {
+
+    let score = 0;
+    let mistakes = "";
+
+    // الأسئلة 1 - 5 (اختيار)
+    for (let i = 1; i <= 5; i++) {
+        let answer = document.querySelector('input[name="q' + i + '"]:checked');
+
+        if (answer && answer.value === "correct") {
+            score++;
+        } else {
+            mistakes += "<br>❌ Question " + i;
+        }
+    }
+
+    // السؤال 6
+    let q6 = document.getElementById("q6").value.toLowerCase().trim();
+    if (q6.includes("begrüßung") || q6.includes("begrussung")) {
+        score++;
+    } else {
+        mistakes += "<br>❌ Question 6<br>✅ Correct answer: Begrüßung";
+    }
+
+    // السؤال 7
+    let q7 = document.getElementById("q7").value.toLowerCase().trim();
+    if (q7.includes("abschied")) {
+        score++;
+    } else {
+        mistakes += "<br>❌ Question 7<br>✅ Correct answer: Abschied";
+    }
+
+    // السؤال 8
+    let q8 = document.getElementById("q8").value.toLowerCase();
+    let count8 = 0;
+
+    if (q8.includes("gute nacht")) count8++;
+    if (q8.includes("auf wiedersehen") || q8.includes("aufwiedersehen")) count8++;
+    if (q8.includes("auf wiederhören") || q8.includes("aufwiederhören")) count8++;
+    if (q8.includes("tschüss") || q8.includes("tschuss")) count8++;
+    if (q8.includes("bis morgen")) count8++;
+
+    score += count8 / 5;
+
+    if (count8 < 5) {
+        mistakes += "<br>❌ Question 8<br>✅ Correct answers: Gute Nacht, Auf Wiedersehen, Auf Wiederhören, Tschüss, Bis Morgen";
+    }
+
+    // السؤال 9
+    let q9 = document.getElementById("q9").value.toLowerCase();
+    let count9 = 0;
+
+    if (q9.includes("guten tag")) count9++;
+    if (q9.includes("guten morgen")) count9++;
+    if (q9.includes("guten abend")) count9++;
+    if (q9.includes("willkommen")) count9++;
+    if (q9.includes("hallo")) count9++;
+
+    score += count9 / 5;
+
+    if (count9 < 5) {
+        mistakes += "<br>❌ Question 9<br>✅ Correct answers: Guten Tag, Guten Morgen, Guten Abend, Willkommen, Hallo";
+    }
+
+    // السؤال 10
+    let q10 = document.getElementById("q10").value.toLowerCase();
+    let count10 = 0;
+
+    if (q10.includes("auf wiedersehen") || q10.includes("aufwiedersehen")) count10++;
+    if (q10.includes("tschüss") || q10.includes("tschuss")) count10++;
+
+    score += count10 / 2;
+
+    if (count10 < 2) {
+        mistakes += "<br>❌ Question 10<br>✅ Correct answers:<br>Formal: Auf Wiedersehen<br>Informal: Tschüss";
+    }
+
+    let message = "";
+
+    if (score === 10) {
+        message = "🎉 Excellent!";
+    } else if (score >= 8) {
+        message = "👏 Very Good!";
+    } else if (score >= 5) {
+        message = "🙂 Good!";
+    } else {
+        message = "📚 Keep studying and try again!";
+    }
+
+    document.getElementById("result").innerHTML =
+        "<h3>Your Score: " + score.toFixed(1) + "/10</h3>" +
+        "<p>" + message + "</p>" +
+        mistakes;
+
+}
+</script>
+
+</body>
+</html>

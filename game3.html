@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Phonetik Game</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#1565C0,#00ACC1);
+text-align:center;
+color:white;
+}
+
+#startScreen{
+padding:30px;
+}
+
+h1{
+font-size:40px;
+}
+
+.character{
+display:inline-block;
+background:white;
+color:black;
+width:150px;
+padding:15px;
+margin:15px;
+border-radius:20px;
+cursor:pointer;
+transition:.3s;
+}
+
+.character:hover{
+transform:scale(1.08);
+background:#ffe082;
+}
+
+.character img{
+width:100px;
+height:100px;
+border-radius:50%;
+}
+
+button{
+padding:15px 35px;
+font-size:22px;
+border:none;
+border-radius:15px;
+background:#FFD54F;
+cursor:pointer;
+margin-top:20px;
+font-weight:bold;
+}
+
+button:hover{
+background:orange;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="startScreen">
+
+<h1>💐Begrußngen und Abschied game🇩🇪</h1>
+
+<h2>Choose Your Character</h2>
+
+<div class="character" onclick="choose('girl')">
+<img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Anna">
+<h3>👧 Anna</h3>
+</div>
+
+<div class="character" onclick="choose('boy')">
+<img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Max">
+<h3>👦 Max</h3>
+</div>
+
+<p id="selected">No Character Selected</p>
+
+<button onclick="startGame()">▶ Start Game</button>
+
+</div>
+
+
+<script>
+
+let player="";
+let score=100;
+let current=0;
+const questions=[
+
+{
+question:"🌞 What does Guten Morgen mean?",
+options:["Good Morning","Good Evening","Good Night","Goodbye"],
+correct:0
+},
+
+{
+question:"☀️ What does Guten Tag mean?",
+options:["Good Night","Good Day","Goodbye","Welcome"],
+correct:1
+},
+
+{
+question:"🌙 What does Guten Abend mean?",
+options:["Good Morning","Good Evening","Hello","Goodbye"],
+correct:1
+},
+
+{
+question:"🌃 What does Gute Nacht mean?",
+options:["Good Morning","Good Night","Good Afternoon","Welcome"],
+correct:1
+},
+
+{
+question:"👋 What does Hallo mean?",
+options:["Hello","Goodbye","Welcome","Good Night"],
+correct:0
+},
+
+{
+question:"❤️ What does Willkommen mean?",
+options:["Welcome","Goodbye","Good Morning","See you tomorrow"],
+correct:0
+},
+
+{
+question:"👋 Tschüss is...",
+options:["Formal","Informal","Only on the phone","A greeting in the morning"],
+correct:1
+},
+
+{
+question:"🤝 Auf Wiedersehen is...",
+options:["Informal","Formal","Only for friends","Good night"],
+correct:1
+},
+
+{
+question:"📞 Auf Wiederhören is used...",
+options:["On the phone","At school","In the morning","Before sleeping"],
+correct:0
+},
+
+{
+question:"🌅 What does Bis morgen mean?",
+options:["See you tomorrow","Good evening","Welcome","Goodbye forever"],
+correct:0
+},
+
+{
+question:"🚪 What does Abschied mean?",
+options:["Greeting","Farewell / Goodbye","Welcome","Good morning"],
+correct:1
+},
+
+{
+question:"👫 Which word is INFORMAL?",
+options:["Auf Wiedersehen","Tschüss","Auf Wiederhören","Guten Tag"],
+correct:1
+},
+
+{
+question:"🏢 Which word is FORMAL?",
+options:["Hallo","Tschüss","Auf Wiedersehen","Bis morgen"],
+correct:2
+},
+
+{
+question:"🌙 Which greeting do we use before sleeping?",
+options:["Guten Morgen","Guten Tag","Gute Nacht","Hallo"],
+correct:2
+},
+
+{
+question:"📞 Which word do we use when saying goodbye on the phone?",
+options:["Auf Wiederhören","Guten Morgen","Willkommen","Guten Abend"],
+correct:0
+}
+
+];
+
+
+function choose(name){
+
+player=name;
+
+document.getElementById("selected").innerHTML=
+"✅ Character Selected";
+
+}
+
+
+function startGame(){
+
+if(player==""){
+alert("Choose your character first!");
+return;
+}
+
+showQuestion();
+
+}
+
+
+function showQuestion(){
+
+let q=questions[current];
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🎮 Phonetik Game 🇩🇪</h1>
+
+<h2>⭐ Score: ${score}</h2>
+
+<h2>📚 Question ${current+1} / ${questions.length}</h2>
+
+<div style="background:white;color:black;padding:20px;border-radius:20px;width:85%;margin:auto;">
+
+<h2>${q.question}</h2>
+
+<button onclick="answer(0)">${q.options[0]}</button><br><br>
+<button onclick="answer(1)">${q.options[1]}</button><br><br>
+<button onclick="answer(2)">${q.options[2]}</button><br><br>
+<button onclick="answer(3)">${q.options[3]}</button>
+
+</div>
+
+<p id="msg"></p>
+
+`;
+
+}
+
+
+function answer(choice){
+
+if(choice==questions[current].correct){
+
+document.getElementById("msg").innerHTML="🎉 Correct!";
+
+setTimeout(nextQuestion,1000);
+
+}else{
+
+score-=5;
+
+document.getElementById("msg").innerHTML=
+"❌ Wrong!<br>✅ الإجابة الصحيحة: "+
+questions[current].options[questions[current].correct];
+
+setTimeout(nextQuestion,2000);
+
+}
+
+}
+
+
+function nextQuestion(){
+
+current++;
+
+if(current < questions.length){
+
+showQuestion();
+
+}else{
+
+finishGame();
+
+}
+
+}
+
+
+function finishGame(){
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🏆 Game Finished</h1>
+
+<h2>Your Score</h2>
+
+<h1>${score}/100</h1>
+
+<p>${
+score==100
+?
+"🥇 Perfect! You are amazing!"
+:
+score>=90
+?
+"🌟 Excellent!"
+:
+score>=80
+?
+"👏 Very Good!"
+:
+"💪 Keep Practicing!"
+}</p>
+
+
+<button onclick="location.reload()">
+🔄 Play Again
+</button>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>

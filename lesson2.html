@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2 Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>1. Wie spricht man "sch"?</h2>
+<input type="radio" name="q1" value="correct"> sh<br>
+<input type="radio" name="q1" value="wrong"> s<br>
+<input type="radio" name="q1" value="wrong"> ch<br><br>
+
+<h2>2. Wie spricht man "ei"?</h2>
+<input type="radio" name="q2" value="correct"> ai<br>
+<input type="radio" name="q2" value="wrong"> ie<br>
+<input type="radio" name="q2" value="wrong"> e<br><br>
+
+<h2>3. Wie spricht man "ie"?</h2>
+<input type="radio" name="q3" value="correct"> i<br>
+<input type="radio" name="q3" value="wrong"> ei<br>
+<input type="radio" name="q3" value="wrong"> e<br><br>
+
+<h2>4. Wie spricht man "eu"?</h2>
+<input type="radio" name="q4" value="correct"> oi<br>
+<input type="radio" name="q4" value="wrong"> au<br>
+<input type="radio" name="q4" value="wrong"> u<br><br>
+
+<h2>5. Wie spricht man "ä"?</h2>
+<input type="radio" name="q5" value="correct"> e<br>
+<input type="radio" name="q5" value="wrong"> a<br>
+<input type="radio" name="q5" value="wrong"> o<br><br>
+
+<h2>6. Wie spricht man "ö"?</h2>
+<input type="radio" name="q6" value="wrong"> a<br>
+<input type="radio" name="q6" value="correct">بضم بقي شويه<br>
+<input type="radio" name="q6" value="wrong"> u<br><br>
+
+<h2>7. Wie spricht man "ü"?</h2>
+<input type="radio" name="q7" value="wrong"> o<br>
+<input type="radio" name="q7" value="correct">بضم بقي اوي<br>
+<input type="radio" name="q7" value="wrong"> a<br><br>
+
+<h2>8. Wie spricht man "sp" am Wortanfang?</h2>
+<input type="radio" name="q8" value="correct"> shp<br>
+<input type="radio" name="q8" value="wrong"> sp<br>
+<input type="radio" name="q8" value="wrong"> p<br><br>
+
+<h2>9. Wie spricht man "st" am Wortanfang?</h2>
+<input type="radio" name="q9" value="correct"> sht<br>
+<input type="radio" name="q9" value="wrong"> st<br>
+<input type="radio" name="q9" value="wrong"> t<br><br>
+
+<h2>10. Wie spricht man "ch" in "ich"?</h2>
+<input type="radio" name="q10" value="correct"> خ خفيفة<br>
+<input type="radio" name="q10" value="wrong"> ك<br>
+<input type="radio" name="q10" value="wrong"> ش<br><br>
+<h2>11. was bedeutet "cheese " in Deutsch</h2>
+<input type="radio" name="q11" value="correct"> käse<br>
+<input type="radio" name="q11" value="wrong"> bär<br>
+<input type="radio" name="q11" value="wrong"> ich<br><br>
+
+<h2>12. was bedeutet "20" in Deutsch</h2>
+<input type="radio" name="q12" value="correct"> zwanzig<br>
+<input type="radio" name="q12" value="wrong"> fertig<br>
+<input type="radio" name="q12" value="wrong"> frau<br><br>
+
+<h2>13. was bedeutet"miss" in Deutsch</h2>
+<input type="radio" name="q13" value="correct"> frau<br>
+<input type="radio" name="q13" value="wrong"> Deutschland<br>
+<input type="radio" name="q13" value="wrong"> sieben<br><br>
+
+<h2>14. was bedeutet"finish" in Deutsch</h2>
+<input type="radio" name="q14" value="correct">fertig <br>
+<input type="radio" name="q14" value="wrong"> fleiBig<br>
+<input type="radio" name="q14" value="wrong"> sonne<br><br>
+
+<h2>15. what is the letters of "ch لما تنطق "خ"" </h2>
+<input -="radio" name="q15" value="correct"> a,o,u,au<br>
+<input type="radio" name="q15" value="wrong"> i,e<br>
+<input type="radio" name="q15" value="wrong"> ö,p,ü,ä<br><br>
+
+<h2>16. what is the letters of ch لما تنطق ش </h2>
+<input type="radio" name="q16" value="correct"> ö,ä,ü,i,e<br>
+<input type="radio" name="q16" value="wrong"> eu,m<br>
+<input type="radio" name="q16" value="wrong"> ö,ä,ü<br><br>
+.       <h2>
+    links 
+    https://whatsapp.com/channel/0029Vb8DcboJENy3RYLD870i
+       لينك الواتس اب 
+       https://www.facebook.com/share/1Km8KfLw8H/
+       فيسبوك
+       https://youtube.com/@taliaziad-s5?si=JeighOpFSITyXxv8
+       يوتيوب
+       لزياره الموقع دوس علي الكلمه كانك هتعمل نسخ ثم دوس على صوره البرنامج 🌹
+</h2>
+
+
+<button type="button" onclick="checkScore()">
+    Submit Quiz
+</button>
+
+<h2 id="result"></h2>
+<script>
+function checkScore() {
+
+    let score = 0;
+    let mistakes = "";
+
+    const answers = {
+        q1: "sh",
+        q2: "ai",
+        q3: "i",
+        q4: "oi",
+        q5: "e",
+        q6: "بضمه شويه" ,
+        q7: "بضم بقي اوي ",
+        q8: "shp",
+        q9: "sht",
+        q10: "خ خفيفة",
+        q11: "käse",
+        q12: "zwanzig ",
+        q13: "frau",
+        q14: "fertig",
+        q15: "a,o,u,au",
+        q16: "ö, ä, ü, i, e"
+    };
+
+    for (let i = 1; i <= 16; i++) {
+
+        let answer = document.querySelector('input[name="q' + i + '"]:checked');
+
+        if (answer && answer.value === "correct") {
+            score++;
+        } else {
+            mistakes += "<br>❌ Question " + i +
+            "<br>✅ Correct answer: " + answers["q" + i] + "<br>";
+        }
+
+    }
+
+    let message = "";
+
+    if (score === 16) {
+        message = "🎉 Excellent!";
+    } else if (score >= 12) {
+        message = "👏 Very Good!";
+    } else if (score >= 8) {
+        message = "🙂 Good!";
+    } else {
+        message = "📚 Keep studying and try again!";
+    }
+
+    document.getElementById("result").innerHTML =
+    "<h3>Your Score: " + score + "/16</h3>" +
+    "<p>" + message + "</p>" +
+    mistakes;
+
+}
+</script>
+
+</body>
+</html>

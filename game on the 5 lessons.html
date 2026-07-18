@@ -1,0 +1,530 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>German Review Game</title><style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#9C27B0,#673AB7);
+text-align:center;
+color:white;
+}
+
+#startScreen{
+padding:30px;
+}
+
+h1{
+font-size:40px;
+}
+
+.character{
+display:inline-block;
+background:white;
+color:black;
+width:150px;
+padding:15px;
+margin:15px;
+border-radius:20px;
+cursor:pointer;
+transition:.3s;
+}
+
+.character:hover{
+transform:scale(1.08);
+background:#ffe082;
+}
+
+.character img{
+width:100px;
+height:100px;
+border-radius:50%;
+}
+
+button{
+padding:15px 35px;
+font-size:22px;
+border:none;
+border-radius:15px;
+background:#FFD54F;
+cursor:pointer;
+margin:10px;
+font-weight:bold;
+}
+
+button:hover{
+background:orange;
+}
+
+input{
+padding:15px;
+font-size:20px;
+border-radius:10px;
+border:2px solid purple;
+width:80%;
+text-align:center;
+}
+
+#words button{
+background:white;
+color:black;
+}
+
+#answerBox{
+font-size:24px;
+font-weight:bold;
+min-height:35px;
+}
+
+</style></head><body><div id="startScreen"><h1>🎮 German Review Game 🇩🇪</h1><h2>🏆 Review the Last 5 Lessons</h2><div class="character" onclick="choose('girl')"><img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Anna"><h3>👧 Anna</h3></div><div class="character" onclick="choose('boy')"><img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Max"><h3>👦 Max</h3></div><p id="selected">No Character Selected</p><button onclick="startGame()">▶ Start Game</button>
+
+</div><script>
+
+let player="";
+
+let score=100;
+
+let current=0;
+
+let selectedWords=[];
+
+const questions=[
+
+/* 5 MULTIPLE CHOICE */
+
+{
+type:"mc",
+question:"🔤 Which letter comes after A?",
+options:["B","C","D","E"],
+correct:"B"
+},
+
+{
+type:"mc",
+question:"🔡 What is the sound of 'EI' in German?",
+options:["آي","ش","خ","أوي"],
+correct:"آي"
+},
+
+{
+type:"mc",
+question:"👋 What does 'Tschüss' mean?",
+options:["Hello","Goodbye","Thank you","Good morning"],
+correct:"Goodbye"
+},
+
+{
+type:"mc",
+question:"🙋 What does 'Wie heißt du?' mean?",
+options:["What is your name?","How old are you?","Where are you?","Goodbye"],
+correct:"What is your name?"
+},
+
+{
+type:"mc",
+question:"🔢 What is 20 in German?",
+options:["zehn","zwölf","neunzehn","zwanzig"],
+correct:"zwanzig"
+},
+
+/* 5 REARRANGE */
+
+{
+type:"rearrange",
+question:"🔄 Arrange the words:",
+words:["du","Wie","heißt"],
+answer:"Wie heißt du?"
+},
+
+{
+type:"rearrange",
+question:"🔄 Arrange the words:",
+words:["alt","Wie","bist","du"],
+answer:"Wie alt bist du?"
+},
+
+{
+type:"rearrange",
+question:"🔄 Arrange the words:",
+words:["bin","Ich","zehn","Jahre","alt"],
+answer:"Ich bin zehn Jahre alt."
+},
+
+{
+type:"rearrange",
+question:"🔄 Arrange the words:",
+words:["Guten","Morgen"],
+answer:"Guten Morgen"
+},
+
+{
+type:"rearrange",
+question:"🔄 Arrange the words:",
+words:["sind","Wie","Sie","alt"],
+answer:"Wie alt sind Sie?"
+},
+
+/* 5 WRITING */
+
+{
+type:"writing",
+question:"✍️ Write 'Good morning' in German.",
+answer:"Guten Morgen"
+},
+
+{
+type:"writing",
+question:"✍️ Write 'Goodbye' in German.",
+answer:"Tschüss"
+},
+
+{
+type:"writing",
+question:"✍️ Write 'What is your name?' in German.",
+answer:"Wie heißt du?"
+},
+
+{
+type:"writing",
+question:"✍️ Write 'I am ten years old' in German.",
+answer:"Ich bin zehn Jahre alt."
+},
+
+{
+type:"writing",
+question:"✍️ Write the number 15 in German.",
+answer:"fünfzehn"
+}
+
+];
+
+function choose(name){
+
+player=name;
+
+document.getElementById("selected").innerHTML=
+"✅ Character Selected";
+
+}
+
+function startGame(){
+
+if(player==""){
+
+alert("Choose your character first!");
+
+return;
+
+}
+
+score=100;
+
+current=0;
+
+showQuestion();
+
+}
+
+function showQuestion(){
+
+let q=questions[current];
+
+selectedWords=[];
+
+let html="";
+
+if(q.type=="mc"){
+
+html=q.options.map(option=>
+
+`<button onclick="checkMC('${option.replace(/'/g,"\\'")}')">
+
+${option}
+
+</button><br>`
+
+).join("");
+
+}
+
+else if(q.type=="rearrange"){
+
+html=`
+
+<div id="words">
+
+${q.words.map((word,index)=>
+
+`<button onclick="addWord('${word}',${index})">
+
+${word}
+
+</button>`
+
+).join("")}
+
+</div>
+
+<h3 id="answerBox"></h3>
+
+<button onclick="undoWord()">
+
+↩️ Undo
+
+</button>
+
+<button onclick="clearWords()">
+
+🗑️ Clear
+
+</button>
+
+<br>
+
+<button onclick="checkRearrange()">
+
+✅ Check Answer
+
+</button>
+
+`;
+
+}
+
+else if(q.type=="writing"){
+
+html=`
+
+<input id="writingAnswer" type="text"
+
+placeholder="Write your answer here">
+
+<br>
+
+<button onclick="checkWriting()">
+
+✅ Check Answer
+
+</button>
+
+`;
+
+}
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🎮 German Review Game 🇩🇪</h1>
+
+<h2>⭐ Score: ${score}/100</h2>
+
+<h2>📚 Question ${current+1} / ${questions.length}</h2>
+
+<div style="background:white;color:black;padding:20px;border-radius:20px;width:85%;margin:auto;">
+
+<h2>${q.question}</h2>
+
+${html}
+
+</div>
+
+<p id="msg"></p>
+
+`;
+
+}
+
+function checkMC(answer){
+
+let q=questions[current];
+
+if(answer.toLowerCase()==q.correct.toLowerCase()){
+
+correctAnswer();
+
+}else{
+
+wrongAnswer(q.correct);
+
+}
+
+}
+
+function addWord(word,index){
+
+selectedWords.push(word);
+
+document.getElementById("answerBox").innerHTML=
+
+selectedWords.join(" ");
+
+}
+
+function undoWord(){
+
+if(selectedWords.length>0){
+
+selectedWords.pop();
+
+document.getElementById("answerBox").innerHTML=
+
+selectedWords.join(" ");
+
+}
+
+}
+
+function clearWords(){
+
+selectedWords=[];
+
+document.getElementById("answerBox").innerHTML="";
+
+}
+
+function checkRearrange(){
+
+let q=questions[current];
+
+let answer=selectedWords.join(" ");
+
+let correctAnswerText=q.answer
+
+.toLowerCase()
+
+.replace(/[.!?]/g,"")
+
+.trim();
+
+let userAnswer=answer
+
+.toLowerCase()
+
+.replace(/[.!?]/g,"")
+
+.trim();
+
+if(userAnswer==correctAnswerText){
+
+correctAnswer();
+
+}else{
+
+wrongAnswer(q.answer);
+
+}
+
+}
+
+function checkWriting(){
+
+let q=questions[current];
+
+let answer=document
+
+.getElementById("writingAnswer")
+
+.value
+
+.trim()
+
+.toLowerCase()
+
+.replace(/[.!?]/g,"");
+
+let correct=q.answer
+
+.toLowerCase()
+
+.replace(/[.!?]/g,"");
+
+if(answer==correct){
+
+correctAnswer();
+
+}else{
+
+wrongAnswer(q.answer);
+
+}
+
+}
+
+function correctAnswer(){
+
+document.getElementById("msg").innerHTML=
+
+"🎉 Correct!";
+
+setTimeout(nextQuestion,1000);
+
+}
+
+function wrongAnswer(correct){
+
+score-=7;
+
+document.getElementById("msg").innerHTML=
+
+"❌ Wrong!<br>✅ Correct Answer: "
+
++correct;
+
+setTimeout(nextQuestion,2000);
+
+}
+
+function nextQuestion(){
+
+current++;
+
+if(current<questions.length){
+
+showQuestion();
+
+}else{
+
+finishGame();
+
+}
+
+}
+
+function finishGame(){
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🏆 Game Finished!</h1>
+
+<h2>Your Score</h2>
+
+<h1>${score}/100</h1>
+
+<p>${
+score==100
+?
+"🥇 Perfect! You are amazing!"
+:
+score>=90
+?
+"🌟 Excellent!"
+:
+score>=70
+?
+"👏 Very Good!"
+:
+score>=50
+?
+"😊 Good!"
+:
+"💪 Keep Practicing!"
+}</p>
+
+<button onclick="location.reload()">
+
+🔄 Play Again
+
+</button>
+
+`;
+
+}
+
+</script></body></html>

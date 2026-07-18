@@ -1,0 +1,188 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Lerne Deutsch mit totii</title><style>
+
+body{
+font-family:Arial,sans-serif;
+margin:0;
+background:#f2f2f2;
+text-align:center;
+}
+
+header{
+background:purple;
+color:white;
+padding:30px;
+}
+
+header h1{
+font-size:35px;
+}
+
+nav{
+background:#333;
+padding:15px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:15px;
+font-size:18px;
+}
+
+section{
+padding:20px;
+}
+
+.box{
+background:white;
+width:80%;
+margin:20px auto;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 10px #ccc;
+}
+
+.box a{
+color:purple;
+text-decoration:none;
+font-size:22px;
+font-weight:bold;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#FFD54F;
+cursor:pointer;
+font-weight:bold;
+margin:5px;
+}
+
+button:hover{
+background:orange;
+}
+
+footer{
+background:#333;
+color:white;
+padding:15px;
+}
+
+</style><link rel="stylesheet" href="style.css"></head><body><header><h1>🇩🇪 Lerne Deutsch mit totii</h1><p>Learn, Practice and Improve</p></header><nav><a href="index.html">Home</a>
+
+<a href="#contact">Contact</a>
+
+</nav><section><h2>📚 Learning</h2><div class="box"><a href="Basics.html">📖 Basics</a>
+
+<p>Videos and basic lessons</p></div><div class="box"><a href="vocabulary.html">📝 Vocabulary</a>
+
+<p>Learn new German words</p></div><div class="box"><a href="Exams.html">📚 Grammar</a>
+
+<p>Grammar rules and lessons</p></div></section><section><h2>🎮 Games</h2><div class="box"><a href="games.html">🎮 Games</a>
+
+<p>Play German learning games</p><br><a href="games.html"><button>▶ Open Games</button>
+
+</a></div><div class="box"><h2>🏆 Game on the 5 Lessons</h2><p>Review the last 5 lessons!</p><a href="game on the 5 lessons.html"><button>▶ Play Review Game</button>
+
+</a></div></section><section><h2>📝 Quizzes</h2><div class="box"><a href="quizzes.html">📚 Quizzes</a>
+
+<p>Choose your lesson and test your knowledge</p><br><a href="quizzes.html"><button>▶ Open Quizzes</button>
+
+</a></div></section><section id="contact"><h2>📞 Contact</h2><a href="https://whatsapp.com/channel/0029Vb8DcboJENy3RYLD870i">WhatsApp
+
+</a><br><br>
+
+<a href="https://www.facebook.com/share/1Km8KfLw8H/">Facebook
+
+</a><br><br>
+
+<a href="https://youtube.com/@taliaziad-s5?si=JeighOpFSITyXxv8">YouTube
+
+</a></section><footer><p>© 2026 Lerne Deutsch mit totii</p></footer><hr>
+
+<hr>
+
+<h2>⭐ Rate Our Website</h2>
+
+<input type="text" id="name" placeholder="Your Name">
+
+<br><br>
+
+<select id="rating">
+  <option value="">Choose your rating</option>
+  <option>⭐</option>
+  <option>⭐⭐</option>
+  <option>⭐⭐⭐</option>
+  <option>⭐⭐⭐⭐</option>
+  <option>⭐⭐⭐⭐⭐</option>
+</select>
+
+<br><br>
+
+<textarea id="opinion" placeholder="Your Opinion"></textarea>
+
+<br><br>
+
+<button onclick="submitRating()">Submit Rating</button>
+
+<div id="message"></div>
+
+<script>
+function submitRating() {
+  let name = document.getElementById("name").value;
+  let rating = document.getElementById("rating").value;
+  let opinion = document.getElementById("opinion").value;
+
+  if (name === "" || rating === "") {
+    alert("Please enter your name and rating");
+    return;
+  }
+
+  document.getElementById("message").innerHTML =
+    "Thank you " + name + " ❤️<br>" +
+    "Your rating: " + rating + "<br>" +
+    opinion;
+}
+</script><hr>
+
+<h2>👥 Visitors</h2>
+
+<input type="text" id="visitorName" placeholder="Enter your name">
+
+<button onclick="joinWebsite()">Join</button>
+
+<div id="visitorsList"></div>
+
+<script>
+function joinWebsite() {
+  let name = document.getElementById("visitorName").value.trim();
+
+  if (name === "") {
+    alert("Please enter your name");
+    return;
+  }
+
+  let visitors = JSON.parse(localStorage.getItem("visitors")) || [];
+
+  visitors.push(name);
+
+  localStorage.setItem("visitors", JSON.stringify(visitors));
+
+  document.getElementById("visitorName").value = "";
+
+  showVisitors();
+}
+
+function showVisitors() {
+  let visitors = JSON.parse(localStorage.getItem("visitors")) || [];
+
+  document.getElementById("visitorsList").innerHTML =
+    visitors.map((name, index) =>
+      `<p>${index + 1}. 👤 ${name}</p>`
+    ).join("");
+}
+
+showVisitors();
+</script></body></html>

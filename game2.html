@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Phonetik Game</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#1565C0,#00ACC1);
+text-align:center;
+color:white;
+}
+
+#startScreen{
+padding:30px;
+}
+
+h1{
+font-size:40px;
+}
+
+.character{
+display:inline-block;
+background:white;
+color:black;
+width:150px;
+padding:15px;
+margin:15px;
+border-radius:20px;
+cursor:pointer;
+transition:.3s;
+}
+
+.character:hover{
+transform:scale(1.08);
+background:#ffe082;
+}
+
+.character img{
+width:100px;
+height:100px;
+border-radius:50%;
+}
+
+button{
+padding:15px 35px;
+font-size:22px;
+border:none;
+border-radius:15px;
+background:#FFD54F;
+cursor:pointer;
+margin-top:20px;
+font-weight:bold;
+}
+
+button:hover{
+background:orange;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="startScreen">
+
+<h1>🎮 Phonetik Game 🇩🇪</h1>
+
+<h2>Choose Your Character</h2>
+
+<div class="character" onclick="choose('girl')">
+<img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Anna">
+<h3>👧 Anna</h3>
+</div>
+
+<div class="character" onclick="choose('boy')">
+<img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Max">
+<h3>👦 Max</h3>
+</div>
+
+<p id="selected">No Character Selected</p>
+
+<button onclick="startGame()">▶ Start Game</button>
+
+</div>
+
+
+<script>
+
+let player="";
+let score=100;
+let current=0;
+
+
+const questions=[
+
+{
+question:"🐻 Bär ما تركيبة الحروف؟",
+options:["Ä","Ei","Au","Sch"],
+correct:0
+},
+
+{
+question:"❄️ Eis ما تركيبة الحروف؟",
+options:["IE","Ei","EU","ST"],
+correct:1
+},
+
+{
+question:"4️⃣ vier ما تركيبة الحروف؟",
+options:["Ei","IE","CH","ß"],
+correct:1
+},
+
+{
+question:"🌍 Europa ما تركيبة الحروف؟",
+options:["EU","Au","Ä","Sp"],
+correct:0
+},
+
+{
+question:"🏠 Haus ما تركيبة الحروف؟",
+options:["Ei","Au","Sch","ST"],
+correct:1
+},
+
+{
+question:"🎒 Tasche ما تركيبة الحروف؟",
+options:["Sch","Sp","CH","Tion"],
+correct:0
+},
+
+{
+question:"⚽ Sport ما تركيبة الحروف؟",
+options:["Sp","ST","Sch","ß"],
+correct:0
+},
+
+{
+question:"🏙️ Stadt ما تركيبة الحروف؟",
+options:["ST","Sp","Ei","IE"],
+correct:0
+},
+
+{
+question:"👟 Fuß ما تركيبة الحروف؟",
+options:["ß","CH","EU","Ä"],
+correct:0
+},
+
+{
+question:"📚 Acht صوت CH هنا؟",
+options:["خ","ش","تسيون","س"],
+correct:0
+},
+
+{
+question:"👁️ Ich صوت CH هنا؟",
+options:["خ","ش","ك","ت"],
+correct:1
+},
+
+{
+question:"📝 Information ما نطق Tion؟",
+options:["تسيون","شون","خ","ك"],
+correct:0
+},
+
+{
+question:"🚗 Auto ما تركيبة الصوت؟",
+options:["Au","Ei","IE","EU"],
+correct:0
+},
+
+{
+question:"🪑 Stuhl ما تركيبة الحروف؟",
+options:["ST","Sch","Sp","Ä"],
+correct:0
+},
+
+{
+question:"🐝 Biene ما تركيبة الحروف؟",
+options:["Ei","IE","EU","Au"],
+correct:1
+}
+
+];
+
+
+function choose(name){
+
+player=name;
+
+document.getElementById("selected").innerHTML=
+"✅ Character Selected";
+
+}
+
+
+function startGame(){
+
+if(player==""){
+alert("Choose your character first!");
+return;
+}
+
+showQuestion();
+
+}
+
+
+function showQuestion(){
+
+let q=questions[current];
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🎮 Phonetik Game 🇩🇪</h1>
+
+<h2>⭐ Score: ${score}</h2>
+
+<h2>📚 Question ${current+1} / ${questions.length}</h2>
+
+<div style="background:white;color:black;padding:20px;border-radius:20px;width:85%;margin:auto;">
+
+<h2>${q.question}</h2>
+
+<button onclick="answer(0)">${q.options[0]}</button><br><br>
+<button onclick="answer(1)">${q.options[1]}</button><br><br>
+<button onclick="answer(2)">${q.options[2]}</button><br><br>
+<button onclick="answer(3)">${q.options[3]}</button>
+
+</div>
+
+<p id="msg"></p>
+
+`;
+
+}
+
+
+function answer(choice){
+
+if(choice==questions[current].correct){
+
+document.getElementById("msg").innerHTML="🎉 Correct!";
+
+setTimeout(nextQuestion,1000);
+
+}else{
+
+score-=5;
+
+document.getElementById("msg").innerHTML=
+"❌ Wrong!<br>✅ الإجابة الصحيحة: "+
+questions[current].options[questions[current].correct];
+
+setTimeout(nextQuestion,2000);
+
+}
+
+}
+
+
+function nextQuestion(){
+
+current++;
+
+if(current < questions.length){
+
+showQuestion();
+
+}else{
+
+finishGame();
+
+}
+
+}
+
+
+function finishGame(){
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🏆 Game Finished</h1>
+
+<h2>Your Score</h2>
+
+<h1>${score}/100</h1>
+
+<p>${
+score==100
+?
+"🥇 Perfect! You are amazing!"
+:
+score>=90
+?
+"🌟 Excellent!"
+:
+score>=80
+?
+"👏 Very Good!"
+:
+"💪 Keep Practicing!"
+}</p>
+
+
+<button onclick="location.reload()">
+🔄 Play Again
+</button>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>

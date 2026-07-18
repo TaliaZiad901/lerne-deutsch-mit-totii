@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1 Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body><h2>was bedeutet ""Apple" in Deutsch</h2>
+
+<input type="radio" name="q1" value="correct"> Apfel<br>
+<input type="radio" name="q1" value="wrong"> affe<br>
+<input type="radio" name="q1" value="wrong"> ball<br>
+    <h2>2. was bedeutet"dolphin" in Deutsch</h2>
+
+    <input type="radio" name="q2" value="wrong">
+           Drucker 
+    <br>
+
+    <input type="radio"  name="q2" value="correct">
+           Delphin
+    <br>
+
+    <input type="radio" name="q2" value="wrong">
+           zug
+    <br><br>
+          <h2>
+            3.was bedeutet "train"in Deutsch?
+          </h2>
+          <input type="radio" name="q3" value="wrong">
+               Cola
+               <br>
+               <input type="radio" name="q3" value="correct">
+                 zug
+                 <br>
+                 <input type="radio" name="q3" value="wrong">
+                 Vater
+                 <br>
+                 <h2>
+                  was bedeutet "cat"in Deutsch
+                 </h2>
+                 <input type="radio" name="q4" value="correct">
+                  katze
+                  <br>
+                  <input type="radio" name="q4" value="wrong">
+                  taxi
+                  <br>
+                  <h2>5. was bedeutet "boy" in Deutsch?</h2>
+
+<input type="radio" name="q5" value="correct">
+junge
+<br>
+
+<input type="radio" name="q5" value="wrong">
+Auto
+<br>
+
+<input type="radio" name="q5" value="wrong">
+Hund
+<br><br>
+
+<h2>6. was bedeutet "dog" in Deutsch?</h2>
+
+<input type="radio" name="q6" value="wrong">
+Katze
+<br>
+
+<input type="radio" name="q6" value="correct">
+Hund
+<br>
+
+<input type="radio" name="q6" value="wrong">
+Haus
+<br><br>
+
+<h2>7. was bedeutet "hand" in Deutsch?</h2>
+
+<input type="radio" name="q7" value="wrong">
+Baum
+<br>
+
+<input type="radio" name="q7" value="correct">
+Hand
+<br>
+
+<input type="radio" name="q7" value="wrong">
+Milch
+<br><br>
+
+<h2>8. was bedeutet "water" in Deutsch?</h2>
+
+<input type="radio" name="q8" value="correct">
+Wasser
+<br>
+
+<input type="radio" name="q8" value="wrong">
+Feuer
+<br>
+
+<input type="radio" name="q8" value="wrong">
+Brot
+<br><br>
+
+<h2>9. was bedeutet "sun" in Deutsch?</h2>
+
+<input type="radio" name="q9" value="wrong">
+Mond
+<br>
+
+<input type="radio" name="q9" value="correct">
+Sonne
+<br>
+
+<input type="radio" name="q9" value="wrong">
+Stern
+<br><br>
+
+<h2>10. was bedeutet "five" in Deutsch?</h2>
+
+<input type="radio" name="q10" value="wrong">
+Lehrer
+<br>
+
+<input type="radio" name="q10" value="correct">
+fünf
+<br>
+
+<input type="radio" name="q10" value="wrong">
+Fenster
+<br><br>
+    <button type="button" onclick="checkScore()">
+        Submit Quiz
+    </button>
+
+<h2 id="result"></h2>
+<script>
+function checkScore() {
+    let score = 0;
+    let mistakes = "";
+
+    const answers = {
+        q1: "Apfel",
+        q2: "Delphin",
+        q3: "Zug",
+        q4: "Katze",
+        q5: "Junge",
+        q6: "Hund",
+        q7: "Hand",
+        q8: "Wasser",
+        q9: "Sonne",
+        q10: "Fünf"
+    };
+
+    for (let i = 1; i <= 10; i++) {
+        let answer = document.querySelector('input[name="q' + i + '"]:checked');
+
+        if (answer && answer.value === "correct") {
+            score++;
+        } else {
+            mistakes += "<br>❌ Question " + i + "<br>✅ Correct answer: " + answers["q" + i] + "<br>";
+        }
+    }
+
+    let message = "";
+
+    if (score === 10) {
+        message = "🎉 Excellent! Perfect Score!";
+    } else if (score >= 7) {
+        message = "👏 Very Good!";
+    } else if (score >= 5) {
+        message = "🙂 Good, keep practicing!";
+    } else {
+        message = "📚 Keep studying and try again!";
+    }
+
+    document.getElementById("result").innerHTML =
+        "<h3>Your Score: " + score + "/10</h3>" +
+        "<p>" + message + "</p>" +
+        mistakes;
+}
+</script>
+</body>
+</html>

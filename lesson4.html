@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 4 Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h2>Choose the correct answer</h2>
+
+<h2>1. How can you ask someone "How old are you?" in the informal way?</h2>
+
+<input type="radio" name="q1" value="correct"> Wie alt bist du?<br>
+<input type="radio" name="q1" value="wrong"> Wie heißt du?<br>
+<input type="radio" name="q1" value="wrong"> Wie alt sind Sie?<br><br>
+
+<h2>2. How can you ask someone "How old are you?" in the formal way?</h2>
+
+<input type="radio" name="q2" value="wrong"> Wie alt bist du?<br>
+<input type="radio" name="q2" value="correct"> Wie alt sind Sie?<br>
+<input type="radio" name="q2" value="wrong"> Wie heißen Sie?<br><br>
+
+<h2>3. What is the correct answer to "Wie heißt du?"</h2>
+
+<input type="radio" name="q3" value="correct"> Ich heiße Talia.<br>
+<input type="radio" name="q3" value="wrong"> Ich bin 15 Jahre alt.<br>
+<input type="radio" name="q3" value="wrong"> Guten Morgen.<br><br>
+<h2>4. How many ways can you ask for someone's name in German?</h2>
+
+<input type="radio" name="q4" value="wrong"> 2<br>
+<input type="radio" name="q4" value="correct"> 3<br>
+<input type="radio" name="q4" value="wrong"> 5<br><br>
+
+<h2>5. What is the meaning of "Wie heißt du?"</h2>
+
+<input type="radio" name="q5" value="correct"> What is your name?<br>
+<input type="radio" name="q5" value="wrong"> How old are you?<br>
+<input type="radio" name="q5" value="wrong"> Where are you from?<br><br>
+
+<h2>6. What is the correct answer to "Wie alt bist du?"</h2>
+
+<input type="radio" name="q6" value="wrong"> Ich heiße Talia.<br>
+<input type="radio" name="q6" value="correct"> Ich bin 15 Jahre alt.<br>
+<input type="radio" name="q6" value="wrong"> Guten Abend.<br><br>
+
+<h2>7. How do you say "One" in German?</h2>
+
+<input type="radio" name="q7" value="correct"> Eins<br>
+<input type="radio" name="q7" value="wrong"> Fünf<br>
+<input type="radio" name="q7" value="wrong"> Null<br><br>
+
+<h2>8. How do you say "Five" in German?</h2>
+
+<input type="radio" name="q8" value="wrong"> Zehn<br>
+<input type="radio" name="q8" value="correct"> Fünf<br>
+<input type="radio" name="q8" value="wrong"> Acht<br><br>
+
+<h2>9. How do you say "Zero" in German?</h2>
+
+<input type="radio" name="q9" value="correct"> Null<br>
+<input type="radio" name="q9" value="wrong"> Eins<br>
+<input type="radio" name="q9" value="wrong"> Zwanzig<br><br
+<hr>
+
+<h2>Complete</h2>
+
+<h2>10. Write the informal and formal way to ask someone "How old are you?"</h2>
+<input type="text" id="q10"><br><br>
+
+<h2>11. Write the German numbers from 1 to 10.</h2>
+<input type="text" id="q11"><br><br>
+
+<h2>12. Write the German numbers from 11 to 20.</h2>
+<input type="text" id="q12"><br><br>
+
+<h2>13. Write the three informal ways to ask someone's name in German.</h2>
+<input type="text" id="q13"><br><br>
+
+<h2>14. Write the three formal ways to ask someone's name in German.</h2>
+<input type="text" id="q14"><br><br>
+
+<h2>15. Write the German numbers from 0 to 10.</h2>
+<input type="text" id="q15"><br><br>
+
+<button type="button" onclick="checkScore()">
+Submit Quiz
+</button>
+
+<h2 id="result"></h2>
+<script>
+function checkScore() {
+
+    let score = 0;
+    let mistakes = "";
+
+    // Questions 1 - 9 (Choose)
+    for (let i = 1; i <= 9; i++) {
+        let answer = document.querySelector('input[name="q' + i + '"]:checked');
+
+        if (answer && answer.value === "correct") {
+            score++;
+        } else {
+            mistakes += "<br>❌ Question " + i;
+        }
+    }
+
+    // Question 10
+    let q10 = document.getElementById("q10").value.toLowerCase();
+    let count10 = 0;
+
+    if (q10.includes("wie alt bist du")) count10++;
+    if (q10.includes("wie alt sind sie")) count10++;
+
+    score += count10 / 2;
+
+    if (count10 < 2) {
+        mistakes += "<br>❌ Question 10<br>✅ Correct answers:<br>Informal: Wie alt bist du?<br>Formal: Wie alt sind Sie?";
+    }
+
+    // Question 11
+    let q11 = document.getElementById("q11").value.toLowerCase();
+    let count11 = 0;
+
+    const numbers1 = [
+        "eins","zwei","drei","vier","fünf",
+        "sechs","sieben","acht","neun","zehn"
+    ];
+
+    numbers1.forEach(word => {
+        if(q11.includes(word)) count11++;
+    });
+
+    score += count11 / 10;
+
+    if(count11 < 10){
+        mistakes += "<br>❌ Question 11<br>✅ Correct: Eins, Zwei, Drei, Vier, Fünf, Sechs, Sieben, Acht, Neun, Zehn";
+    }
+
+    // Question 12
+    let q12 = document.getElementById("q12").value.toLowerCase();
+    let count12 = 0;
+
+    const numbers2 = [
+        "elf","zwölf","dreizehn","vierzehn","fünfzehn",
+        "sechzehn","siebzehn","achtzehn","neunzehn","zwanzig"
+    ];
+
+    numbers2.forEach(word => {
+        if(q12.includes(word)) count12++;
+    });
+
+    score += count12 / 10;
+
+    if(count12 < 10){
+        mistakes += "<br>❌ Question 12<br>✅ Correct: Elf, Zwölf, Dreizehn, Vierzehn, Fünfzehn, Sechzehn, Siebzehn, Achtzehn, Neunzehn, Zwanzig";
+    }
+
+    // Question 13
+    let q13 = document.getElementById("q13").value.toLowerCase();
+    let count13 = 0;
+
+    if(q13.includes("wie heißt du")) count13++;
+    if(q13.includes("wie ist dein name")) count13++;
+    if(q13.includes("dein name")) count13++;
+
+    score += count13 / 3;
+
+    if(count13 < 3){
+        mistakes += "<br>❌ Question 13<br>✅ Correct answers:<br>Wie heißt du?<br>Wie ist dein Name?<br>Dein Name?";
+    }
+
+    // Question 14
+    let q14 = document.getElementById("q14").value.toLowerCase();
+    let count14 = 0;
+
+    if(q14.includes("wie heißen sie")) count14++;
+    if(q14.includes("wie ist ihr name")) count14++;
+    if(q14.includes("ihr name")) count14++;
+
+    score += count14 / 3;
+
+    if(count14 < 3){
+        mistakes += "<br>❌ Question 14<br>✅ Correct answers:<br>Wie heißen Sie?<br>Wie ist Ihr Name?<br>Ihr Name?";
+    }
+
+    // Question 15
+    let q15 = document.getElementById("q15").value.toLowerCase();
+    let count15 = 0;
+
+    const numbers3 = [
+        "null","eins","zwei","drei","vier","fünf",
+        "sechs","sieben","acht","neun","zehn"
+    ];
+
+    numbers3.forEach(word=>{
+        if(q15.includes(word)) count15++;
+    });
+
+    score += count15 / 11;
+
+    if(count15 < 11){
+        mistakes += "<br>❌ Question 15<br>✅ Correct: Null, Eins, Zwei, Drei, Vier, Fünf, Sechs, Sieben, Acht, Neun, Zehn";
+    }
+
+    let message = "";
+
+    if(score >= 14.5){
+        message = "🎉 Excellent!";
+    }else if(score >= 12){
+        message = "👏 Very Good!";
+    }else if(score >= 8){
+        message = "🙂 Good!";
+    }else{
+        message = "📚 Keep studying and try again!";
+    }
+
+    document.getElementById("result").innerHTML =
+    "<h3>Your Score: " + score.toFixed(1) + "/15</h3>" +
+    "<p>" + message + "</p>" +
+    mistakes;
+
+}
+</script>
+
+</body>
+</html>

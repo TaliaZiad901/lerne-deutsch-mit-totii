@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Age & Numbers Game</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#9C27B0,#673AB7);
+text-align:center;
+color:white;
+}
+
+#startScreen{
+padding:30px;
+}
+
+h1{
+font-size:40px;
+}
+
+.character{
+display:inline-block;
+background:white;
+color:black;
+width:150px;
+padding:15px;
+margin:15px;
+border-radius:20px;
+cursor:pointer;
+transition:.3s;
+}
+
+.character:hover{
+transform:scale(1.08);
+background:#ffe082;
+}
+
+.character img{
+width:100px;
+height:100px;
+border-radius:50%;
+}
+
+button{
+padding:15px 35px;
+font-size:22px;
+border:none;
+border-radius:15px;
+background:#FFD54F;
+cursor:pointer;
+margin-top:20px;
+font-weight:bold;
+}
+
+button:hover{
+background:orange;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="startScreen">
+
+<h1>🎮 Age & Numbers Game 🇩🇪</h1>
+
+<h2>Choose Your Character</h2>
+
+<div class="character" onclick="choose('girl')">
+<img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Anna">
+<h3>👧 Anna</h3>
+</div>
+
+<div class="character" onclick="choose('boy')">
+<img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Max">
+<h3>👦 Max</h3>
+</div>
+
+<p id="selected">No Character Selected</p>
+
+<button onclick="startGame()">▶ Start Game</button>
+
+</div>
+
+<script>
+
+let player="";
+let score=100;
+let current=0;
+
+const questions=[
+
+{
+question:"🎂 Wie alt bist du? This sentence is...",
+options:["Formal","Informal","Goodbye","Greeting"],
+correct:1
+},
+
+{
+question:"👔 Wie alt sind Sie? This sentence is...",
+options:["Informal","Formal","Goodbye","Greeting"],
+correct:1
+},
+
+{
+question:"🎂 Ich bin zehn Jahre alt. How old am I?",
+options:["5","10","15","20"],
+correct:1
+},
+
+{
+question:"🔢 What is 0 in German?",
+options:["null","eins","zehn","zwanzig"],
+correct:0
+},
+
+{
+question:"🔢 What is 1 in German?",
+options:["zwei","eins","drei","vier"],
+correct:1
+},
+
+{
+question:"🔢 What is 5 in German?",
+options:["fünf","sechs","vier","zehn"],
+correct:0
+},
+
+{
+question:"🔢 What is 10 in German?",
+options:["zehn","zwölf","elf","zwanzig"],
+correct:0
+},
+
+{
+question:"🔢 What is 12 in German?",
+options:["zehn","elf","zwölf","dreizehn"],
+correct:2
+},
+
+{
+question:"🔢 What is 15 in German?",
+options:["vierzehn","fünfzehn","sechzehn","zwanzig"],
+correct:1
+},
+
+{
+question:"🔢 What is 20 in German?",
+options:["zehn","zwölf","neunzehn","zwanzig"],
+correct:3
+},
+
+{
+question:"📝 Complete: Ich bin ___ Jahre alt.",
+options:["zehn","sind","bist","Sie"],
+correct:0
+},
+
+{
+question:"👔 Complete: Wie alt ___ Sie?",
+options:["bist","sind","bin","ist"],
+correct:1
+},
+
+{
+question:"😊 Complete: Wie alt ___ du?",
+options:["sind","bin","bist","ist"],
+correct:2
+},
+
+{
+question:"🔢 Which number is 'sieben'?",
+options:["6","7","8","9"],
+correct:1
+},
+
+{
+question:"🔢 Which number is 'neunzehn'?",
+options:["17","18","19","20"],
+correct:2
+}
+
+];
+function choose(name){
+
+player=name;
+
+document.getElementById("selected").innerHTML=
+"✅ Character Selected";
+
+}
+
+function startGame(){
+
+if(player==""){
+
+alert("Choose your character first!");
+
+return;
+
+}
+
+showQuestion();
+
+}
+
+function showQuestion(){
+
+let q=questions[current];
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🎮 Age & Numbers Game 🇩🇪</h1>
+
+<h2>⭐ Score: ${score}</h2>
+
+<h2>📚 Question ${current+1} / ${questions.length}</h2>
+
+<div style="background:white;color:black;padding:20px;border-radius:20px;width:85%;margin:auto;">
+
+<h2>${q.question}</h2>
+
+<button onclick="answer(0)">${q.options[0]}</button><br><br>
+
+<button onclick="answer(1)">${q.options[1]}</button><br><br>
+
+<button onclick="answer(2)">${q.options[2]}</button><br><br>
+
+<button onclick="answer(3)">${q.options[3]}</button>
+
+</div>
+
+<p id="msg"></p>
+
+`;
+
+}
+
+function answer(choice){
+
+if(choice==questions[current].correct){
+
+document.getElementById("msg").innerHTML=
+"🎉 Correct!";
+
+setTimeout(nextQuestion,1000);
+
+}else{
+
+score-=7;
+
+document.getElementById("msg").innerHTML=
+"❌ Wrong!<br>✅ Correct Answer: "+
+questions[current].options[questions[current].correct];
+
+setTimeout(nextQuestion,2000);
+
+}
+
+}
+
+function nextQuestion(){
+
+current++;
+
+if(current < questions.length){
+
+showQuestion();
+
+}else{
+
+finishGame();
+
+}
+
+}
+
+function finishGame(){
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🏆 Game Finished</h1>
+
+<h2>Your Score</h2>
+
+<h1>${score}/100</h1>
+
+<p>${
+score==100
+?
+"🥇 Perfect! You are amazing!"
+:
+score>=90
+?
+"🌟 Excellent!"
+:
+score>=80
+?
+"👏 Very Good!"
+:
+score>=70
+?
+"😊 Good!"
+:
+"💪 Keep Practicing!"
+}</p>
+
+<button onclick="location.reload()">
+
+🔄 Play Again
+
+</button>
+
+`;
+
+}
+
+</script>
+
+</body>
+
+</html>
