@@ -187,17 +187,8 @@ function showVisitors() {
 }
 
 showVisitors();
-</script><hr>
+</script><script>
 
-<h2>👥 Visitors</h2>
-
-<input type="text" id="visitorName" placeholder="Enter your name">
-
-<button onclick="joinWebsite()">Join</button>
-
-<div id="visitorsList"></div>
-
-<script>
 const SUPABASE_URL =
 "https://rxrrxqdsfodrhrpvrhti.supabase.co";
 
@@ -205,34 +196,63 @@ const SUPABASE_ANON_KEY =
 "sb_publishable_BWTWBQWEMAVQI9oRC8JmHg_DVYJBCMu";
 
 async function joinWebsite() {
-  let name = document.getElementById("visitorName").value.trim();
 
-  if (name === "") {
-    alert("Please enter your name");
-    return;
-  }
+    let name =
+    document.getElementById("visitorName").value.trim();
 
-  const response = await fetch(
-    `${SUPABASE_URL}/rest/v1/visitors`,
-    {
-      method: "POST",
-      headers: {
-        "apikey": SUPABASE_ANON_KEY,
-        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
-        "Content-Type": "application/json",
-        "Prefer": "return=minimal"
-      },
-      body: JSON.stringify({
-        name: name
-      })
+    if (name === "") {
+
+        alert("Please enter your name");
+
+        return;
+
     }
-  );
 
-  if (response.ok) {
-    alert("Welcome " + name + " ❤️");
-    document.getElementById("visitorName").value = "";
-  } else {
-    alert("Something went wrong ❌");
-  }
+    const response = await fetch(
+
+        `${SUPABASE_URL}/rest/v1/visitors`,
+
+        {
+
+            method: "POST",
+
+            headers: {
+
+                "apikey": SUPABASE_ANON_KEY,
+
+                "Authorization":
+                `Bearer ${SUPABASE_ANON_KEY}`,
+
+                "Content-Type":
+                "application/json",
+
+                "Prefer":
+                "return=minimal"
+
+            },
+
+            body: JSON.stringify({
+
+                name: name
+
+            })
+
+        }
+
+    );
+
+    if (response.ok) {
+
+        alert("Welcome " + name + " ❤️");
+
+        document.getElementById("visitorName").value = "";
+
+    } else {
+
+        alert("Something went wrong ❌");
+
+    }
+
 }
+
 </script></body></html>
