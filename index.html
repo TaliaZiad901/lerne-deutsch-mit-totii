@@ -187,10 +187,19 @@ function showVisitors() {
 }
 
 showVisitors();
-</script><script>
-fetch("https://api.counterapi.dev/v1/lerne-deutsch-mit-totii/visits/up");
-</script><script>
-const SUPABASE_URL = "https://rxrrxqdsfodrhrpvrhti.supabase.co";
+</script><hr>
+
+<h2>👥 Visitors</h2>
+
+<input type="text" id="visitorName" placeholder="Enter your name">
+
+<button onclick="joinWebsite()">Join</button>
+
+<div id="visitorsList"></div>
+
+<script>
+const SUPABASE_URL =
+"https://rxrrxqdsfodrhrpvrhti.supabase.co";
 
 const SUPABASE_ANON_KEY =
 "sb_publishable_BWTWBQWEMAVQI9oRC8JmHg_DVYJBCMu";
@@ -204,7 +213,7 @@ async function joinWebsite() {
   }
 
   const response = await fetch(
-    `${SUPABASE_URL}/rest/v1/TaliaZiad901%27s%20Org`,
+    `${SUPABASE_URL}/rest/v1/visitors`,
     {
       method: "POST",
       headers: {
@@ -223,7 +232,7 @@ async function joinWebsite() {
     alert("Welcome " + name + " ❤️");
     document.getElementById("visitorName").value = "";
   } else {
-    alert("Something went wrong");
+    alert("Something went wrong ❌");
   }
 }
 </script></body></html>
