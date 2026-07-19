@@ -156,38 +156,7 @@ function submitRating() {
 <button onclick="joinWebsite()">Join</button>
 
 <div id="visitorsList"></div>
-
 <script>
-function joinWebsite() {
-  let name = document.getElementById("visitorName").value.trim();
-
-  if (name === "") {
-    alert("Please enter your name");
-    return;
-  }
-
-  let visitors = JSON.parse(localStorage.getItem("visitors")) || [];
-
-  visitors.push(name);
-
-  localStorage.setItem("visitors", JSON.stringify(visitors));
-
-  document.getElementById("visitorName").value = "";
-
-  showVisitors();
-}
-
-function showVisitors() {
-  let visitors = JSON.parse(localStorage.getItem("visitors")) || [];
-
-  document.getElementById("visitorsList").innerHTML =
-    visitors.map((name, index) =>
-      `<p>${index + 1}. 👤 ${name}</p>`
-    ).join("");
-}
-
-showVisitors();
-</script><script>
 
 const SUPABASE_URL =
 "https://rxrrxqdsfodrhrpvrhti.supabase.co";
