@@ -191,22 +191,39 @@ showVisitors();
 fetch("https://api.counterapi.dev/v1/lerne-deutsch-mit-totii/visits/up");
 </script><script>
 const SUPABASE_URL = "https://rxrrxqdsfodrhrpvrhti.supabase.co";
-const SUPABASE_ANON_KEY = "ضعي_هنا_الـ_ANON_KEY";
 
-async function countVisit() {
-  await fetch(`${SUPABASE_URL}/rest/v1/TaliaZiad901's%20Org`, {
-    method: "POST",
-    headers: {
-      "apikey": SUPABASE_ANON_KEY,
-      "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
-      "Content-Type": "application/json",
-      "Prefer": "return=minimal"
-    },
-    body: JSON.stringify({
-      name: "visitor"
-    })
-  });
+const SUPABASE_ANON_KEY =
+"sb_publishable_BWTWBQWEMAVQI9oRC8JmHg_DVYJBCMu";
+
+async function joinWebsite() {
+  let name = document.getElementById("visitorName").value.trim();
+
+  if (name === "") {
+    alert("Please enter your name");
+    return;
+  }
+
+  const response = await fetch(
+    `${SUPABASE_URL}/rest/v1/TaliaZiad901%27s%20Org`,
+    {
+      method: "POST",
+      headers: {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify({
+        name: name
+      })
+    }
+  );
+
+  if (response.ok) {
+    alert("Welcome " + name + " ❤️");
+    document.getElementById("visitorName").value = "";
+  } else {
+    alert("Something went wrong");
+  }
 }
-
-countVisit();
 </script></body></html>
