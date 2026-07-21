@@ -1,1 +1,441 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wie geht's dir Game</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#2196F3,#673AB7);
+text-align:center;
+color:white;
+}
+
+#startScreen{
+padding:30px;
+}
+
+h1{
+font-size:40px;
+}
+
+.character{
+display:inline-block;
+background:white;
+color:black;
+width:150px;
+padding:15px;
+margin:15px;
+border-radius:20px;
+cursor:pointer;
+transition:.3s;
+}
+
+.character:hover{
+transform:scale(1.08);
+background:#ffe082;
+}
+
+.character img{
+width:100px;
+height:100px;
+border-radius:50%;
+}
+
+button{
+padding:15px 35px;
+font-size:22px;
+border:none;
+border-radius:15px;
+background:#FFD54F;
+cursor:pointer;
+margin-top:20px;
+font-weight:bold;
+}
+
+button:hover{
+background:orange;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="startScreen">
+
+
+<h1>🎮 Wie geht's dir? 🇩🇪</h1>
+
+
+<h2>Choose Your Character</h2>
+
+
+<div class="character" onclick="choose('Anna')">
+
+<img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Anna">
+
+<h3>👧 Anna</h3>
+
+</div>
+
+
+
+<div class="character" onclick="choose('Max')">
+
+<img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Max">
+
+<h3>👦 Max</h3>
+
+</div>
+
+
+<p id="selected">
+No Character Selected
+</p>
+
+
+<button onclick="startGame()">
+▶ Start Game
+</button>
+
+
+</div>
+
+
+
+<script>
+
+
+let player="";
+
+let score=100;
+
+let current=0;
+
+
+
+const questions=[
+
+
+// Choose 10
+
+{
+question:"Wie geht's dir?",
+options:["Gut","Tschüss","Hallo","Bitte"],
+correct:0
+},
+
+{
+question:"Wie geht es dir?",
+options:["Sehr gut","Danke","Nein","Guten Morgen"],
+correct:0
+},
+
+{
+question:"Wie geht's Ihnen?",
+options:["Gut","Wie heißt du?","Tschüss","Nein"],
+correct:0
+},
+
+{
+question:"Gut means:",
+options:["Good","Bad","Hello","Bye"],
+correct:0
+},
+
+{
+question:"Sehr gut means:",
+options:["Very good","Not good","Goodbye","Thanks"],
+correct:0
+},
+
+{
+question:"Es geht means:",
+options:["So-so","Very good","Hello","Name"],
+correct:0
+},
+
+{
+question:"Nicht gut means:",
+options:["Not good","Good","Morning","Bye"],
+correct:0
+},
+
+{
+question:"Answer: Wie geht's dir?",
+options:["Gut","Tschüss","Ich heiße Anna","Nein"],
+correct:0
+},
+
+{
+question:"Formal: How are you?",
+options:["Wie geht's Ihnen?","Wie alt bist du?","Wie heißt du?","Danke"],
+correct:0
+},
+
+{
+question:"Sehr gut =",
+options:["Very good","Bad","Hello","Please"],
+correct:0
+},
+
+
+
+// Match 10
+
+{
+question:"Match: Wie geht's dir?",
+options:["How are you?","Good","Thank you","Bye"],
+correct:0
+},
+
+{
+question:"Match: Gut",
+options:["Good","Bad","Hello","Name"],
+correct:0
+},
+
+{
+question:"Match: Sehr gut",
+options:["Very good","No","Bye","Morning"],
+correct:0
+},
+
+{
+question:"Match: Es geht",
+options:["So-so","Good","Thanks","Hello"],
+correct:0
+},
+
+{
+question:"Match: Nicht gut",
+options:["Not good","Very good","Goodbye","Please"],
+correct:0
+},
+
+{
+question:"Match: Wie geht es dir?",
+options:["How are you?","What is your name?","Good night","Bye"],
+correct:0
+},
+
+{
+question:"Match: Wie geht's Ihnen?",
+options:["How are you? (formal)","Hello","Thanks","No"],
+correct:0
+},
+
+{
+question:"Match: Gut",
+options:["Good","Bad","Sorry","Bye"],
+correct:0
+},
+
+{
+question:"Match: Sehr gut",
+options:["Very good","Morning","No","Name"],
+correct:0
+},
+
+{
+question:"Match: Es geht",
+options:["So-so","Great","Hello","Thank you"],
+correct:0
+}
+
+
+];
+
+
+
+function choose(name){
+
+player=name;
+
+document.getElementById("selected").innerHTML=
+"✅ Character Selected: "+name;
+
+}
+
+
+
+function startGame(){
+
+if(player==""){
+
+alert("Choose your character first!");
+
+return;
+
+}
+
+showQuestion();
+
+}
+
+
+
+function showQuestion(){
+
+
+let q=questions[current];
+
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🎮 Wie geht's dir? 🇩🇪</h1>
+
+<h2>👤 ${player}</h2>
+
+<h2>⭐ Score: ${score}</h2>
+
+
+<h2>📚 Question ${current+1} / 20</h2>
+
+
+<div style="background:white;color:black;padding:20px;border-radius:20px;width:85%;margin:auto;">
+
+
+<h2>${q.question}</h2>
+
+
+<button onclick="answer(0)">${q.options[0]}</button><br>
+
+<button onclick="answer(1)">${q.options[1]}</button><br>
+
+<button onclick="answer(2)">${q.options[2]}</button><br>
+
+<button onclick="answer(3)">${q.options[3]}</button>
+
+
+</div>
+
+
+<p id="msg"></p>
+
+
+`;
+
+}
+
+
+
+function answer(choice){
+
+
+if(choice==questions[current].correct){
+
+
+document.getElementById("msg").innerHTML=
+"🎉 Correct!";
+
+
+setTimeout(nextQuestion,1000);
+
+
+}else{
+
+
+score-=5;
+
+
+document.getElementById("msg").innerHTML=
+"❌ Wrong!<br>✅ Correct Answer: "+
+questions[current].options[questions[current].correct];
+
+
+setTimeout(nextQuestion,2000);
+
+
+}
+
+
+}
+
+
+
+function nextQuestion(){
+
+
+current++;
+
+
+if(current<questions.length){
+
+showQuestion();
+
+}else{
+
+finishGame();
+
+}
+
+
+}
+
+
+
+
+function finishGame(){
+
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🏆 Game Finished</h1>
+
+<h2>Your Score</h2>
+
+<h1>${score}/100</h1>
+
+
+<p>
+
+${
+score==100
+?
+"🥇 Perfect! You are amazing!"
+:
+score>=90
+?
+"🌟 Excellent!"
+:
+score>=80
+?
+"👏 Very Good!"
+:
+score>=70
+?
+"😊 Good!"
+:
+"💪 Keep Practicing!"
+}
+
+</p>
+
+
+<button onclick="location.reload()">
+
+🔄 Play Again
+
+</button>
+
+`;
+
+}
+
+
+</script>
+
+
+</body>
+</html>
