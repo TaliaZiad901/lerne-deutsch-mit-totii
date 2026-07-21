@@ -1,1 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 5 Quiz</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<h2>Choose the correct answer</h2>
+
+<h2>1. Wie geht's dir?</h2>
+
+<input type="radio" name="q1" value="correct"> Gut, danke.<br>
+<input type="radio" name="q1" value="wrong"> Tschüss.<br>
+<input type="radio" name="q1" value="wrong"> Hallo.<br><br>
+
+<h2>2. Wie geht's Ihnen?</h2>
+
+<input type="radio" name="q2" value="wrong"> Ich heiße Ali.<br>
+<input type="radio" name="q2" value="correct"> Sehr gut, danke.<br>
+<input type="radio" name="q2" value="wrong"> Auf Wiedersehen.<br><br>
+
+<h2>3. What means "Very good"?</h2>
+
+<input type="radio" name="q3" value="wrong"> Es geht<br>
+<input type="radio" name="q3" value="correct"> Sehr gut<br>
+<input type="radio" name="q3" value="wrong"> Nicht gut<br><br>
+
+<h2>4. What means "So-so"?</h2>
+
+<input type="radio" name="q4" value="wrong"> Gut<br>
+<input type="radio" name="q4" value="correct"> Es geht<br>
+<input type="radio" name="q4" value="wrong"> Sehr gut<br><br>
+
+<h2>5. What means "Not good"?</h2>
+
+<input type="radio" name="q5" value="wrong"> Gut<br>
+<input type="radio" name="q5" value="wrong"> Sehr gut<br>
+<input type="radio" name="q5" value="correct"> Nicht gut<br><br>
+
+<hr>
+
+<h2>Match</h2>
+
+<h2>6. Sehr gut</h2>
+
+<select id="q6">
+<option value="">Choose</option>
+<option value="wrong">Good</option>
+<option value="correct">Very good</option>
+<option value="wrong">Not good</option>
+<option value="wrong">So-so</option>
+</select>
+
+<h2>7. Gut</h2>
+
+<select id="q7">
+<option value="">Choose</option>
+<option value="correct">Good</option>
+<option value="wrong">Very good</option>
+<option value="wrong">Not good</option>
+<option value="wrong">So-so</option>
+</select>
+
+<h2>8. Es geht</h2>
+
+<select id="q8">
+<option value="">Choose</option>
+<option value="wrong">Good</option>
+<option value="wrong">Very good</option>
+<option value="correct">So-so</option>
+<option value="wrong">Not good</option>
+</select>
+
+<h2>9. Nicht gut</h2>
+
+<select id="q9">
+<option value="">Choose</option>
+<option value="wrong">Good</option>
+<option value="wrong">Very good</option>
+<option value="correct">Not good</option>
+<option value="wrong">So-so</option>
+</select>
+    
+
+<h2>10. Wie geht's dir?</h2>
+
+<select id="q10">
+<option value="">Choose</option>
+<option value="correct">How are you?</option>
+<option value="wrong">Goodbye</option>
+<option value="wrong">Thank you</option>
+<option value="wrong">What is your name?</option>
+</select>
+
+<hr>
+    <h2>Put the words in order</h2>
+
+<h2>11. geht / Wie / dir / es</h2>
+<input type="text" id="q11"><br><br>
+
+<h2>12. gut / Mir / geht's</h2>
+<input type="text" id="q12"><br><br>
+
+<h2>13. gut / Sehr / danke</h2>
+<input type="text" id="q13"><br><br>
+
+<h2>14. geht / Es</h2>
+<input type="text" id="q14"><br><br>
+
+<h2>15. gut / Nicht</h2>
+<input type="text" id="q15"><br><br>
+
+<hr>
+
+<h2>Translate</h2>
+
+<h2>16. كيف حالك؟</h2>
+<input type="text" id="q16"><br><br>
+
+<h2>17. أنا بخير، شكراً.</h2>
+<input type="text" id="q17"><br><br>
+
+<h2>18. ممتاز جدًا.</h2>
+<input type="text" id="q18"><br><br>
+
+<h2>19. ليس جيدًا.</h2>
+<input type="text" id="q19"><br><br>
+
+<h2>20.ماشي الحال  .</h2>
+<input type="text" id="q20"><br><br>
+
+<button type="button" onclick="checkScore()">
+Submit Quiz
+</button>
+
+    <h2 id="result"></h2>
+    <script>
+
+function checkScore() {
+
+let score = 0;
+let mistakes = "";
+
+// Choose (1-5)
+for (let i = 1; i <= 5; i++) {
+let answer = document.querySelector('input[name="q'+i+'"]:checked');
+
+if(answer && answer.value=="correct"){
+score++;
+}else{
+mistakes += "<br>❌ Question "+i;
+}
+}
+
+// Match (6-10)
+for(let i=6;i<=10;i++){
+
+if(document.getElementById("q"+i).value=="correct"){
+score++;
+}else{
+mistakes += "<br>❌ Question "+i;
+}
+}
+
+// Put in Order
+if(document.getElementById("q11").value.trim().toLowerCase()=="wie geht es dir"){
+score++;
+}else{
+mistakes+="<br>❌ Question 11<br>✅ Correct answer: Wie geht es dir";
+}
+
+if(document.getElementById("q12").value.trim().toLowerCase()=="mir geht's gut"){
+score++;
+}else{
+mistakes+="<br>❌ Question 12<br>✅ Correct answer: Mir geht's gut";
+}
+
+if(document.getElementById("q13").value.trim().toLowerCase()=="sehr gut danke"){
+score++;
+}else{
+mistakes+="<br>❌ Question 13<br>✅ Correct answer: Sehr gut, danke";
+}
+
+if(document.getElementById("q14").value.trim().toLowerCase()=="es geht"){
+score++;
+}else{
+mistakes+="<br>❌ Question 14<br>✅ Correct answer: Es geht";
+}
+
+if(document.getElementById("q15").value.trim().toLowerCase()=="nicht gut"){
+score++;
+}else{
+mistakes+="<br>❌ Question 15<br>✅ Correct answer: Nicht gut";
+}
+
+// Translate
+if(document.getElementById("q16").value.trim().toLowerCase()=="wie geht's dir"){
+score++;
+}else{
+mistakes+="<br>❌ Question 16<br>✅ Correct answer: Wie geht's dir";
+}
+
+if(document.getElementById("q17").value.trim().toLowerCase()=="mir geht's gut, danke" || document.getElementById("q17").value.trim().toLowerCase()=="mir geht's gut danke"){
+score++;
+}else{
+mistakes+="<br>❌ Question 17<br>✅ Correct answer: Mir geht's gut, danke";
+}
+
+if(document.getElementById("q18").value.trim().toLowerCase()=="sehr gut"){
+score++;
+}else{
+mistakes+="<br>❌ Question 18<br>✅ Correct answer: Sehr gut";
+}
+
+if(document.getElementById("q19").value.trim().toLowerCase()=="nicht gut"){
+score++;
+}else{
+mistakes+="<br>❌ Question 19<br>✅ Correct answer: Nicht gut";
+}
+
+if(document.getElementById("q20").value.trim().toLowerCase()=="es geht"){
+score++;
+}else{
+mistakes+="<br>❌ Question 20<br>✅ Correct answer: Es geht";
+}
+
+let message="";
+
+if(score==20){
+message="🏆 Excellent!";
+}else if(score>=16){
+message="👏 Very Good!";
+}else if(score>=10){
+message="🙂 Good!";
+}else{
+message="📚 Keep studying and try again!";
+}
+
+document.getElementById("result").innerHTML=
+"<h3>Your Score: "+score+"/20</h3>"+
+"<p>"+message+"</p>"+
+mistakes;
+
+}
+
+</script>
+
+</body>
+</html>
