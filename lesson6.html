@@ -63,8 +63,8 @@
 
 <h2>8. Ich komme aus ____.</h2>
 <input type="radio" name="q8" value="correct"> Deutschland<br>
-<input type="radio" name="q8" value="wrong"> Danke<br>
-<input type="radio" name="q8" value="wrong"> Hallo<br><br>
+<input type="radio" name="q8" value="wrong"> Hallo<br>
+<input type="radio" name="q8" value="wrong"> Danke<br><br>
 
 
 <h2>9. Germany in German is:</h2>
@@ -87,38 +87,29 @@
 <h2>11. Ich ______ aus Deutschland.</h2>
 <input type="text" id="q11"><br><br>
 
-
 <h2>12. Woher ______ du?</h2>
 <input type="text" id="q12"><br><br>
-
 
 <h2>13. Ich komme ______ Ägypten.</h2>
 <input type="text" id="q13"><br><br>
 
-
 <h2>14. Deutschland = ______</h2>
 <input type="text" id="q14"><br><br>
-
 
 <h2>15. Spanien = ______</h2>
 <input type="text" id="q15"><br><br>
 
-
 <h2>16. Frankreich = ______</h2>
 <input type="text" id="q16"><br><br>
-
 
 <h2>17. Ägypten = ______</h2>
 <input type="text" id="q17"><br><br>
 
-
 <h2>18. Ich komme aus Frankreich.</h2>
 <input type="text" id="q18"><br><br>
 
-
 <h2>19. Ich komme aus Spanien.</h2>
 <input type="text" id="q19"><br><br>
-
 
 <h2>20. I come from Egypt.</h2>
 <input type="text" id="q20"><br><br>
@@ -137,21 +128,27 @@ Submit Quiz
 function checkScore(){
 
 let score = 0;
+let mistakes = "";
 
+// Choose
 
-// Choose 1-10
 for(let i=1;i<=10;i++){
 
 let answer=document.querySelector('input[name="q'+i+'"]:checked');
 
 if(answer && answer.value=="correct"){
 score++;
-}
+}else{
+
+mistakes += "<br>❌ Question "+i+
+"<br>✅ Correct answer: "+getCorrect(i);
 
 }
 
+}
 
-// Complete 11-20
+
+// Complete
 
 let answers={
 
@@ -174,16 +171,49 @@ for(let q in answers){
 let user=document.getElementById(q).value.toLowerCase().trim();
 
 if(user==answers[q]){
+
 score++;
+
+}else{
+
+mistakes += "<br>❌ Question "+q.substring(1)+
+"<br>✅ Correct answer: "+answers[q];
+
 }
 
 }
 
 
 document.getElementById("result").innerHTML=
-"Your Score: "+score+"/20 🇩🇪";
+
+"<h3>Your Score: "+score+"/20</h3>"+
+mistakes;
+
 
 }
+
+
+function getCorrect(q){
+
+let correct={
+
+1:"Ich komme aus Deutschland",
+2:"Germany",
+3:"Egypt",
+4:"Spain",
+5:"France",
+6:"aus",
+7:"kommst",
+8:"Deutschland",
+9:"Deutschland",
+10:"I come from Spain"
+
+};
+
+return correct[q];
+
+}
+
 
 </script>
 
