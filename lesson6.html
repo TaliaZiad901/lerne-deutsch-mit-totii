@@ -1,1 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 6 Quiz</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<h1>📝 Lesson 6 Quiz 🇩🇪</h1>
+
+<h2>Choose the correct answer</h2>
+
+
+<h2>1. Woher kommst du?</h2>
+<input type="radio" name="q1" value="correct"> Ich komme aus Deutschland.<br>
+<input type="radio" name="q1" value="wrong"> Guten Morgen.<br>
+<input type="radio" name="q1" value="wrong"> Tschüss.<br><br>
+
+
+<h2>2. Deutschland means?</h2>
+<input type="radio" name="q2" value="correct"> Germany<br>
+<input type="radio" name="q2" value="wrong"> France<br>
+<input type="radio" name="q2" value="wrong"> Spain<br><br>
+
+
+<h2>3. Ägypten means?</h2>
+<input type="radio" name="q3" value="correct"> Egypt<br>
+<input type="radio" name="q3" value="wrong"> Italy<br>
+<input type="radio" name="q3" value="wrong"> Germany<br><br>
+
+
+<h2>4. Spanien means?</h2>
+<input type="radio" name="q4" value="correct"> Spain<br>
+<input type="radio" name="q4" value="wrong"> France<br>
+<input type="radio" name="q4" value="wrong"> Egypt<br><br>
+
+
+<h2>5. Frankreich means?</h2>
+<input type="radio" name="q5" value="correct"> France<br>
+<input type="radio" name="q5" value="wrong"> Germany<br>
+<input type="radio" name="q5" value="wrong"> Morocco<br><br>
+
+
+<h2>6. Ich komme ___ Ägypten.</h2>
+<input type="radio" name="q6" value="correct"> aus<br>
+<input type="radio" name="q6" value="wrong"> bin<br>
+<input type="radio" name="q6" value="wrong"> heiße<br><br>
+
+
+<h2>7. Woher ___ du?</h2>
+<input type="radio" name="q7" value="correct"> kommst<br>
+<input type="radio" name="q7" value="wrong"> kommt<br>
+<input type="radio" name="q7" value="wrong"> komme<br><br>
+
+
+<h2>8. Ich komme aus ____.</h2>
+<input type="radio" name="q8" value="correct"> Deutschland<br>
+<input type="radio" name="q8" value="wrong"> Danke<br>
+<input type="radio" name="q8" value="wrong"> Hallo<br><br>
+
+
+<h2>9. Germany in German is:</h2>
+<input type="radio" name="q9" value="correct"> Deutschland<br>
+<input type="radio" name="q9" value="wrong"> Spanien<br>
+<input type="radio" name="q9" value="wrong"> Frankreich<br><br>
+
+
+<h2>10. Ich komme aus Spanien.</h2>
+<input type="radio" name="q10" value="correct"> I come from Spain.<br>
+<input type="radio" name="q10" value="wrong"> Goodbye.<br>
+<input type="radio" name="q10" value="wrong"> My name is Ali.<br><br>
+
+
+<hr>
+
+<h2>Complete</h2>
+
+
+<h2>11. Ich ______ aus Deutschland.</h2>
+<input type="text" id="q11"><br><br>
+
+
+<h2>12. Woher ______ du?</h2>
+<input type="text" id="q12"><br><br>
+
+
+<h2>13. Ich komme ______ Ägypten.</h2>
+<input type="text" id="q13"><br><br>
+
+
+<h2>14. Deutschland = ______</h2>
+<input type="text" id="q14"><br><br>
+
+
+<h2>15. Spanien = ______</h2>
+<input type="text" id="q15"><br><br>
+
+
+<h2>16. Frankreich = ______</h2>
+<input type="text" id="q16"><br><br>
+
+
+<h2>17. Ägypten = ______</h2>
+<input type="text" id="q17"><br><br>
+
+
+<h2>18. Ich komme aus Frankreich.</h2>
+<input type="text" id="q18"><br><br>
+
+
+<h2>19. Ich komme aus Spanien.</h2>
+<input type="text" id="q19"><br><br>
+
+
+<h2>20. I come from Egypt.</h2>
+<input type="text" id="q20"><br><br>
+
+
+<button onclick="checkScore()">
+Submit Quiz
+</button>
+
+
+<h2 id="result"></h2>
+
+
+<script>
+
+function checkScore(){
+
+let score = 0;
+
+
+// Choose 1-10
+for(let i=1;i<=10;i++){
+
+let answer=document.querySelector('input[name="q'+i+'"]:checked');
+
+if(answer && answer.value=="correct"){
+score++;
+}
+
+}
+
+
+// Complete 11-20
+
+let answers={
+
+q11:"komme",
+q12:"kommst",
+q13:"aus",
+q14:"germany",
+q15:"spain",
+q16:"france",
+q17:"egypt",
+q18:"i come from france",
+q19:"i come from spain",
+q20:"ich komme aus ägypten"
+
+};
+
+
+for(let q in answers){
+
+let user=document.getElementById(q).value.toLowerCase().trim();
+
+if(user==answers[q]){
+score++;
+}
+
+}
+
+
+document.getElementById("result").innerHTML=
+"Your Score: "+score+"/20 🇩🇪";
+
+}
+
+</script>
+
+
+</body>
+</html>
