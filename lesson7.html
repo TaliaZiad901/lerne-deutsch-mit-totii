@@ -55,23 +55,18 @@
 <h2>Complete the sentence ✏️</h2>
 
 <h2>6. Ich ______ in Ägypten.</h2>
-
 <input type="text" id="q6"><br><br>
 
 <h2>7. Wo ______ du?</h2>
-
 <input type="text" id="q7"><br><br>
 
 <h2>8. Wo ______ Sie?</h2>
-
 <input type="text" id="q8"><br><br>
 
 <h2>9. Die Hauptstadt von Italien ist ______.</h2>
-
 <input type="text" id="q9"><br><br>
 
 <h2>10. Die Hauptstadt von Österreich ist ______.</h2>
-
 <input type="text" id="q10"><br><br>
 
 
@@ -139,11 +134,9 @@
 <h2>Put the words in order 🔤</h2>
 
 <h2>16. wohnen / Wo / Sie</h2>
-
 <input type="text" id="q16"><br><br>
 
 <h2>17. du / wohnst / Wo</h2>
-
 <input type="text" id="q17"><br><br>
 
 
@@ -152,15 +145,12 @@
 <h2>Translate 🌍</h2>
 
 <h2>18. أين تسكن؟</h2>
-
 <input type="text" id="q18"><br><br>
 
 <h2>19. أنا أسكن في مصر.</h2>
-
 <input type="text" id="q19"><br><br>
 
 <h2>20. العاصمة</h2>
-
 <input type="text" id="q20"><br><br>
 
 
@@ -173,217 +163,225 @@ Submit Quiz
 
 <script>
 
+function cleanAnswer(text){
+
+return text
+.trim()
+.toLowerCase()
+.replace(/[?.!,]/g,"")
+.replace(/\s+/g," ");
+
+}
+
+
 function checkScore(){
 
 let score = 0;
 let mistakes = "";
 
-// Choose 1-5
 
-for(let i=1;i<=5;i++){
+// ====================
+// Choose 1 - 5
+// ====================
+
+for(let i=1; i<=5; i++){
 
 let answer = document.querySelector(
 'input[name="q'+i+'"]:checked'
 );
 
-if(answer && answer.value=="correct"){
+if(answer && answer.value === "correct"){
 
 score++;
 
 }else{
 
-mistakes += "<br>❌ Question "+i;
+mistakes += "<br>❌ Question " + i;
 
 }
 
 }
 
 
-// Complete 6-10
+// ====================
+// Complete 6 - 10
+// ====================
 
 let answers = {
 
-q6:["wohne"],
-q7:["wohnst"],
-q8:["wohnen"],
-q9:["roma"],
-q10:["wien"]
+q6:"wohne",
+q7:"wohnst",
+q8:"wohnen",
+q9:"roma",
+q10:"wien"
 
 };
 
-for(let i=6;i<=10;i++){
+for(let i=6; i<=10; i++){
 
-let userAnswer =
-document.getElementById("q"+i)
-.value.trim()
-.toLowerCase();
+let userAnswer = cleanAnswer(
+document.getElementById("q"+i).value
+);
 
-if(answers["q"+i].includes(userAnswer)){
+if(userAnswer === answers["q"+i]){
 
 score++;
 
 }else{
 
 mistakes +=
-"<br>❌ Question "+i+
-"<br>✅ Correct answer: "+
-answers["q"+i][0];
+"<br>❌ Question " + i +
+"<br>✅ Correct answer: " +
+answers["q"+i];
 
 }
 
 }
 
 
-// Match 11-15
+// ====================
+// Match 11 - 15
+// ====================
 
-for(let i=11;i<=15;i++){
+for(let i=11; i<=15; i++){
 
-if(document.getElementById("q"+i).value=="correct"){
+if(document.getElementById("q"+i).value === "correct"){
 
 score++;
 
 }else{
 
-mistakes += "<br>❌ Question "+i;
+mistakes += "<br>❌ Question " + i;
 
 }
 
 }
 
 
+// ====================
 // Put in order
+// ====================
 
-if(
-document.getElementById("q16")
-.value.trim()
-.toLowerCase()
-.replace(/\?/g,"")
-==
-"wo wohnen sie"
-){
+let q16 = cleanAnswer(
+document.getElementById("q16").value
+);
+
+if(q16 === "wo wohnen sie"){
 
 score++;
 
 }else{
 
 mistakes +=
-"<br>❌ Question 16"+
+"<br>❌ Question 16" +
 "<br>✅ Correct answer: Wo wohnen Sie?";
 
 }
 
 
-if(
-document.getElementById("q17")
-.value.trim()
-.toLowerCase()
-.replace(/\?/g,"")
-==
-"wo wohnst du"
-){
+let q17 = cleanAnswer(
+document.getElementById("q17").value
+);
+
+if(q17 === "wo wohnst du"){
 
 score++;
 
 }else{
 
 mistakes +=
-"<br>❌ Question 17"+
+"<br>❌ Question 17" +
 "<br>✅ Correct answer: Wo wohnst du?";
 
 }
 
 
+// ====================
 // Translate
+// ====================
 
-if(
-document.getElementById("q18")
-.value.trim()
-.toLowerCase()
-.replace(/\?/g,"")
-==
-"wo wohnen sie"
-||
-document.getElementById("q18")
-.value.trim()
-.toLowerCase()
-.replace(/\?/g,"")
-==
-"wo wohnst du"
-){
+let q18 = cleanAnswer(
+document.getElementById("q18").value
+);
+
+if(q18 === "wo wohnen sie" || q18 === "wo wohnst du"){
 
 score++;
 
 }else{
 
 mistakes +=
-"<br>❌ Question 18"+
-"<br>✅ Correct answer: Wo wohnen Sie?";
+"<br>❌ Question 18" +
+"<br>✅ Correct answer: Wo wohnen Sie? / Wo wohnst du?";
 
 }
 
 
-if(
-document.getElementById("q19")
-.value.trim()
-.toLowerCase()
-==
-"ich wohne in ägypten"
-){
+let q19 = cleanAnswer(
+document.getElementById("q19").value
+);
+
+if(q19 === "ich wohne in ägypten"){
 
 score++;
 
 }else{
 
 mistakes +=
-"<br>❌ Question 19"+
+"<br>❌ Question 19" +
 "<br>✅ Correct answer: Ich wohne in Ägypten.";
 
 }
 
 
-if(
-document.getElementById("q20")
-.value.trim().toLowerCase()
-==
-"die hauptstadt"
-){
+let q20 = cleanAnswer(
+document.getElementById("q20").value
+);
+
+if(q20 === "die hauptstadt"){
 
 score++;
 
 }else{
 
 mistakes +=
-"<br>❌ Question 20"+
+"<br>❌ Question 20" +
 "<br>✅ Correct answer: Die Hauptstadt";
 
 }
 
 
-let message="";
+// ====================
+// Result
+// ====================
 
-if(score==20){
+let message = "";
 
-message="🏆 Excellent!";
+if(score === 20){
 
-}else if(score>=16){
+message = "🏆 Excellent!";
 
-message="👏 Very Good!";
+}else if(score >= 16){
 
-}else if(score>=10){
+message = "👏 Very Good!";
 
-message="🙂 Good!";
+}else if(score >= 10){
+
+message = "🙂 Good!";
 
 }else{
 
-message="📚 Keep studying and try again!";
+message = "📚 Keep studying and try again!";
 
 }
 
 
-document.getElementById("result").innerHTML=
+document.getElementById("result").innerHTML =
 
-"<h3>Your Score: "+score+"/20</h3>"+
-"<p>"+message+"</p>"+
+"<h3>Your Score: " + score + "/20</h3>" +
+
+"<p>" + message + "</p>" +
+
 mistakes;
 
 }
@@ -391,4 +389,4 @@ mistakes;
 </script>
 
 </body>
-  </html>
+</html>
