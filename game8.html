@@ -1,1 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 7 Game</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#9C27B0,#673AB7);
+text-align:center;
+color:white;
+}
+
+#startScreen{
+padding:30px;
+}
+
+h1{
+font-size:40px;
+}
+
+.character{
+display:inline-block;
+background:white;
+color:black;
+width:150px;
+padding:15px;
+margin:15px;
+border-radius:20px;
+cursor:pointer;
+transition:.3s;
+}
+
+.character:hover{
+transform:scale(1.08);
+background:#ffe082;
+}
+
+.character img{
+width:100px;
+height:100px;
+border-radius:50%;
+}
+
+button{
+padding:15px 35px;
+font-size:22px;
+border:none;
+border-radius:15px;
+background:#FFD54F;
+cursor:pointer;
+margin:10px;
+font-weight:bold;
+}
+
+button:hover{
+background:orange;
+}
+
+#words button{
+background:white;
+color:black;
+}
+
+#answerBox{
+font-size:24px;
+font-weight:bold;
+min-height:40px;
+}
+
+select{
+padding:15px;
+font-size:20px;
+border-radius:10px;
+margin:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="startScreen">
+
+<h1>🎮 Lesson 7 Game 🇩🇪</h1>
+
+<h2>🏠 Wohnen & Hauptstädte</h2>
+
+<div class="character" onclick="choose('girl')">
+
+<img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Anna">
+
+<h3>👧 Anna</h3>
+
+</div>
+
+<div class="character" onclick="choose('boy')">
+
+<img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Max">
+
+<h3>👦 Max</h3>
+
+</div>
+
+<p id="selected">No Character Selected</p>
+
+<button onclick="startGame()">▶ Start Game</button>
+
+</div>
+
+<script>
+
+let player="";
+let score=100;
+let current=0;
+let selectedWords=[];
+
+const questions=[
+
+/* CONNECT */
+
+{
+type:"match",
+question:"🔗 Ägypten",
+options:["Kairo","Paris","Madrid","Wien"],
+correct:"Kairo"
+},
+
+{
+type:"match",
+question:"🔗 Frankreich",
+options:["Bern","Paris","Roma","Moskau"],
+correct:"Paris"
+},
+
+{
+type:"match",
+question:"🔗 Spanien",
+options:["Madrid","Kairo","Wien","Paris"],
+correct:"Madrid"
+},
+
+{
+type:"match",
+question:"🔗 Italien",
+options:["Moskau","Roma","Bern","Madrid"],
+correct:"Roma"
+},
+
+{
+type:"match",
+question:"🔗 Österreich",
+options:["Paris","Wien","Kairo","Madrid"],
+correct:"Wien"
+},
+
+{
+type:"match",
+question:"🔗 Russland",
+options:["Bern","Roma","Moskau","Paris"],
+correct:"Moskau"
+},
+
+{
+type:"match",
+question:"🔗 Die Schweiz",
+options:["Madrid","Bern","Kairo","Wien"],
+correct:"Bern"
+},
+
+{
+type:"match",
+question:"🔗 Die Hauptstadt von Ägypten",
+options:["Paris","Kairo","Roma","Madrid"],
+correct:"Kairo"
+},
+
+{
+type:"match",
+question:"🔗 Die Hauptstadt von Spanien",
+options:["Wien","Bern","Madrid","Moskau"],
+correct:"Madrid"
+},
+
+{
+type:"match",
+question:"🔗 Die Hauptstadt von Frankreich",
+options:["Kairo","Paris","Roma","Wien"],
+correct:"Paris"
+},
+
+/* REARRANGE */
+
+{
+type:"rearrange",
+question:"🔤 Arrange the words:",
+words:["wohnen","Wo","Sie"],
+answer:"Wo wohnen Sie?"
+},
+
+{
+type:"rearrange",
+question:"🔤 Arrange the words:",
+words:["du","Wo","wohnst"],
+answer:"Wo wohnst du?"
+},
+
+{
+type:"rearrange",
+question:"🔤 Arrange the words:",
+words:["in","Ich","Ägypten","wohne"],
+answer:"Ich wohne in Ägypten."
+},
+
+{
+type:"rearrange",
+question:"🔤 Arrange the words:",
+words:["in","Ich","Kairo","wohne"],
+answer:"Ich wohne in Kairo."
+},
+
+{
+type:"rearrange",
+question:"🔤 Arrange the words:",
+words:["Hauptstadt","Die","ist","Kairo"],
+answer:"Die Hauptstadt ist Kairo."
+},
+
+{
+type:"rearrange",
+question:"🔤 Arrange the words:",
+words:["Frankreich","von","Die","Hauptstadt","ist","Paris"],
+answer:"Die Hauptstadt von Frankreich ist Paris."
+},
+
+{
+type:"rearrange",
+question:"🔤 Arrange the words:",
+words:["Spanien","von","Die","Hauptstadt","ist","Madrid"],
+answer:"Die Hauptstadt von Spanien ist Madrid."
+},
+
+{
+type:"rearrange",
+question:"🔤 Arrange the words:",
+words:["Italien","von","Die","Hauptstadt","ist","Roma"],
+answer:"Die Hauptstadt von Italien ist Roma."
+},
+
+{
+type:"rearrange",
+question:"🔤 Arrange the words:",
+words:["Österreich","von","Die","Hauptstadt","ist","Wien"],
+answer:"Die Hauptstadt von Österreich ist Wien."
+},
+
+{
+type:"rearrange",
+question:"🔤 Arrange the words:",
+words:["Russland","von","Die","Hauptstadt","ist","Moskau"],
+answer:"Die Hauptstadt von Russland ist Moskau."
+}
+
+];
+
+
+function choose(name){
+
+player=name;
+
+document.getElementById("selected").innerHTML=
+"✅ Character Selected";
+
+}
+
+
+function startGame(){
+
+if(player==""){
+
+alert("Choose your character first!");
+
+return;
+
+}
+
+score=100;
+current=0;
+
+showQuestion();
+
+}
+
+
+function showQuestion(){
+
+let q=questions[current];
+
+selectedWords=[];
+
+let html="";
+
+
+/* MATCH */
+
+if(q.type=="match"){
+
+html=`
+
+<select id="matchAnswer">
+
+<option value="">Choose</option>
+
+${q.options.map(option=>
+
+`<option value="${option}">${option}</option>`
+
+).join("")}
+
+</select>
+
+<br>
+
+<button onclick="checkMatch()">
+
+✅ Check Answer
+
+</button>
+
+`;
+
+}
+
+
+/* REARRANGE */
+
+else if(q.type=="rearrange"){
+
+html=`
+
+<div id="words">
+
+${q.words.map((word,index)=>
+
+`<button onclick="addWord('${word}',${index})">
+
+${word}
+
+</button>`
+
+).join("")}
+
+</div>
+
+<h3 id="answerBox"></h3>
+
+<button onclick="undoWord()">
+
+↩️ Undo
+
+</button>
+
+<button onclick="clearWords()">
+
+🗑️ Clear
+
+</button>
+
+<br>
+
+<button onclick="checkRearrange()">
+
+✅ Check Answer
+
+</button>
+
+`;
+
+}
+
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🎮 Lesson 7 Game 🇩🇪</h1>
+
+<h2>⭐ Score: ${score}/100</h2>
+
+<h2>📚 Question ${current+1} / ${questions.length}</h2>
+
+<div style="background:white;color:black;padding:20px;border-radius:20px;width:85%;margin:auto;">
+
+<h2>${q.question}</h2>
+
+${html}
+
+</div>
+
+<p id="msg"></p>
+
+`;
+
+}
+
+
+/* MATCH */
+
+function checkMatch(){
+
+let q=questions[current];
+
+let answer=document.getElementById("matchAnswer").value;
+
+if(answer==q.correct){
+
+correctAnswer();
+
+}else{
+
+wrongAnswer(q.correct);
+
+}
+
+}
+
+
+/* ADD WORD */
+
+function addWord(word,index){
+
+selectedWords.push(word);
+
+document.getElementById("answerBox").innerHTML=
+
+selectedWords.join(" ");
+
+}
+
+
+/* UNDO */
+
+function undoWord(){
+
+if(selectedWords.length>0){
+
+selectedWords.pop();
+
+document.getElementById("answerBox").innerHTML=
+
+selectedWords.join(" ");
+
+}
+
+}
+
+
+/* CLEAR */
+
+function clearWords(){
+
+selectedWords=[];
+
+document.getElementById("answerBox").innerHTML="";
+
+}
+
+
+/* CHECK REARRANGE */
+
+function checkRearrange(){
+
+let q=questions[current];
+
+let answer=selectedWords.join(" ");
+
+let correct=q.answer
+.toLowerCase()
+.replace(/[.!?]/g,"")
+.trim();
+
+let user=answer
+.toLowerCase()
+.replace(/[.!?]/g,"")
+.trim();
+
+if(user==correct){
+
+correctAnswer();
+
+}else{
+
+wrongAnswer(q.answer);
+
+}
+
+}
+
+
+/* CORRECT */
+
+function correctAnswer(){
+
+document.getElementById("msg").innerHTML=
+
+"🎉 Correct!";
+
+setTimeout(nextQuestion,1000);
+
+}
+
+
+/* WRONG */
+
+function wrongAnswer(correct){
+
+score-=5;
+
+document.getElementById("msg").innerHTML=
+
+"❌ Wrong!<br>✅ Correct Answer: "+correct;
+
+setTimeout(nextQuestion,2000);
+
+}
+
+
+/* NEXT */
+
+function nextQuestion(){
+
+current++;
+
+if(current<questions.length){
+
+showQuestion();
+
+}else{
+
+finishGame();
+
+}
+
+}
+
+
+/* FINISH */
+
+function finishGame(){
+
+document.getElementById("startScreen").innerHTML=`
+
+<h1>🏆 Game Finished!</h1>
+
+<h2>Your Score</h2>
+
+<h1>${score}/100</h1>
+
+<p>
+
+${
+score==100
+?
+"🥇 Perfect! You are amazing!"
+:
+score>=90
+?
+"🌟 Excellent!"
+:
+score>=70
+?
+"👏 Very Good!"
+:
+score>=50
+?
+"😊 Good!"
+:
+"💪 Keep Practicing!"
+}
+
+</p>
+
+<button onclick="location.reload()">
+
+🔄 Play Again
+
+</button>
+
+`;
+
+}
+
+</script>
+
+</body>
+
+</html>
