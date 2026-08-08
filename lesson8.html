@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 8 Quiz</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<h1>🇩🇪 Lesson 8 Quiz</h1>
+
+<h2>Choose the correct answer</h2>
+
+<h2>1. Was bedeutet "Darf ich essen?"</h2>
+
+<input type="radio" name="q1" value="correct"> Can I eat?<br>
+<input type="radio" name="q1" value="wrong"> Can I drink?<br>
+<input type="radio" name="q1" value="wrong"> Can I sleep?<br><br>
+
+
+<h2>2. Was bedeutet "Darf ich trinken?"</h2>
+
+<input type="radio" name="q2" value="wrong"> Can I eat?<br>
+<input type="radio" name="q2" value="correct"> Can I drink?<br>
+<input type="radio" name="q2" value="wrong"> Can I go?<br><br>
+
+
+<h2>3. "Toilette bitte" bedeutet ...</h2>
+
+<input type="radio" name="q3" value="correct"> Bathroom, please.<br>
+<input type="radio" name="q3" value="wrong"> Food, please.<br>
+<input type="radio" name="q3" value="wrong"> Water, please.<br><br>
+
+
+<h2>4. Was bedeutet "Darf ich ins Bad gehen?"</h2>
+
+<input type="radio" name="q4" value="wrong"> Can I eat?<br>
+<input type="radio" name="q4" value="correct"> Can I go to the bathroom?<br>
+<input type="radio" name="q4" value="wrong"> Can I drink?<br><br>
+
+
+<h2>5. Was bedeutet "bitte"?</h2>
+
+<input type="radio" name="q5" value="correct"> Please<br>
+<input type="radio" name="q5" value="wrong"> Goodbye<br>
+<input type="radio" name="q5" value="wrong"> Thank you<br><br>
+
+
+<hr>
+
+<h2>Complete the sentence ✏️</h2>
+
+<h2>6. Darf ich ______?</h2>
+
+<input type="text" id="q6"><br><br>
+
+
+<h2>7. Darf ich ______?</h2>
+
+<input type="text" id="q7"><br><br>
+
+
+<h2>8. Toilette ______.</h2>
+
+<input type="text" id="q8"><br><br>
+
+
+<h2>9. Darf ich ins ______ gehen?</h2>
+
+<input type="text" id="q9"><br><br>
+
+
+<h2>10. ______ ich trinken?</h2>
+
+<input type="text" id="q10"><br><br>
+
+
+<hr>
+
+<h2>Match 🔗</h2>
+
+<h2>11. essen</h2>
+
+<select id="q11">
+
+<option value="">Choose</option>
+<option value="correct">eat</option>
+<option value="wrong">drink</option>
+<option value="wrong">bathroom</option>
+<option value="wrong">please</option>
+
+</select>
+
+
+<h2>12. trinken</h2>
+
+<select id="q12">
+
+<option value="">Choose</option>
+<option value="wrong">eat</option>
+<option value="correct">drink</option>
+<option value="wrong">bathroom</option>
+<option value="wrong">please</option>
+
+</select>
+
+
+<h2>13. Toilette</h2>
+
+<select id="q13">
+
+<option value="">Choose</option>
+<option value="wrong">eat</option>
+<option value="wrong">drink</option>
+<option value="correct">Bathroom / Toilet</option>
+<option value="wrong">please</option>
+
+</select>
+
+
+<h2>14. Bad</h2>
+
+<select id="q14">
+
+<option value="">Choose</option>
+<option value="correct">Bathroom</option>
+<option value="wrong">Food</option>
+<option value="wrong">Water</option>
+<option value="wrong">Goodbye</option>
+
+</select>
+
+
+<h2>15. bitte</h2>
+
+<select id="q15">
+
+<option value="">Choose</option>
+<option value="wrong">eat</option>
+<option value="wrong">drink</option>
+<option value="wrong">bathroom</option>
+<option value="correct">Please</option>
+
+</select>
+
+
+<hr>
+
+<h2>Put the words in order 🔤</h2>
+
+<h2>16. ich / Darf / essen</h2>
+
+<input type="text" id="q16"><br><br>
+
+
+<h2>17. trinken / Darf / ich</h2>
+
+<input type="text" id="q17"><br><br>
+
+
+<h2>18. bitte / Toilette</h2>
+
+<input type="text" id="q18"><br><br>
+
+
+<hr>
+
+<h2>Translate 🌍</h2>
+
+<h2>19. هل يمكنني أن أشرب؟</h2>
+
+<input type="text" id="q19"><br><br>
+
+
+<h2>20. من فضلك، الحمام.</h2>
+
+<input type="text" id="q20"><br><br>
+
+
+<button type="button" onclick="checkScore()">
+Submit Quiz
+</button>
+
+<h2 id="result"></h2>
+
+
+<script>
+
+function checkScore(){
+
+let score = 0;
+let mistakes = "";
+
+
+/* CHOOSE 1-5 */
+
+for(let i=1; i<=5; i++){
+
+let answer = document.querySelector(
+'input[name="q'+i+'"]:checked'
+);
+
+if(answer && answer.value=="correct"){
+
+score++;
+
+}else{
+
+mistakes += "<br>❌ Question "+i;
+
+}
+
+}
+
+
+/* COMPLETE 6-10 */
+
+let answers = {
+
+q6:["essen"],
+q7:["trinken"],
+q8:["bitte"],
+q9:["Bad","bad"],
+q10:["Darf","darf"]
+
+};
+
+for(let i=6; i<=10; i++){
+
+let userAnswer =
+document.getElementById("q"+i)
+.value
+.trim()
+.toLowerCase();
+
+let correct =
+answers["q"+i].map(x=>x.toLowerCase());
+
+if(correct.includes(userAnswer)){
+
+score++;
+
+}else{
+
+mistakes +=
+"<br>❌ Question "+i+
+"<br>✅ Correct answer: "+
+answers["q"+i][0];
+
+}
+
+}
+
+
+/* MATCH 11-15 */
+
+for(let i=11; i<=15; i++){
+
+if(document.getElementById("q"+i).value=="correct"){
+
+score++;
+
+}else{
+
+mistakes += "<br>❌ Question "+i;
+
+}
+
+}
+
+
+/* ORDER 16 */
+
+let q16 =
+document.getElementById("q16")
+.value
+.trim()
+.toLowerCase()
+.replace(/[.!?]/g,"");
+
+if(q16=="darf ich essen"){
+
+score++;
+
+}else{
+
+mistakes +=
+"<br>❌ Question 16"+
+"<br>✅ Correct answer: Darf ich essen";
+
+}
+
+
+/* ORDER 17 */
+
+let q17 =
+document.getElementById("q17")
+.value
+.trim()
+.toLowerCase()
+.replace(/[.!?]/g,"");
+
+if(q17=="darf ich trinken"){
+
+score++;
+
+}else{
+
+mistakes +=
+"<br>❌ Question 17"+
+"<br>✅ Correct answer: Darf ich trinken";
+
+}
+
+
+/* ORDER 18 */
+
+let q18 =
+document.getElementById("q18")
+.value
+.trim()
+.toLowerCase()
+.replace(/[.!?]/g,"");
+
+if(q18=="toilette bitte"){
+
+score++;
+
+}else{
+
+mistakes +=
+"<br>❌ Question 18"+
+"<br>✅ Correct answer: Toilette bitte";
+
+}
+
+
+/* TRANSLATE 19 */
+
+let q19 =
+document.getElementById("q19")
+.value
+.trim()
+.toLowerCase()
+.replace(/[.!?]/g,"");
+
+if(
+q19=="darf ich trinken"
+){
+
+score++;
+
+}else{
+
+mistakes +=
+"<br>❌ Question 19"+
+"<br>✅ Correct answer: Darf ich trinken";
+
+}
+
+
+/* TRANSLATE 20 */
+
+let q20 =
+document.getElementById("q20")
+.value
+.trim()
+.toLowerCase()
+.replace(/[.!?]/g,"");
+
+if(
+q20=="toilette bitte"
+){
+
+score++;
+
+}else{
+
+mistakes +=
+"<br>❌ Question 20"+
+"<br>✅ Correct answer: Toilette bitte";
+
+}
+
+
+/* MESSAGE */
+
+let message="";
+
+if(score==20){
+
+message="🏆 Excellent!";
+
+}else if(score>=16){
+
+message="👏 Very Good!";
+
+}else if(score>=10){
+
+message="🙂 Good!";
+
+}else{
+
+message="📚 Keep studying and try again!";
+
+}
+
+
+document.getElementById("result").innerHTML=
+
+"<h3>Your Score: "+score+"/20</h3>"+
+"<p>"+message+"</p>"+
+mistakes;
+
+}
+
+</script>
+
+</body>
+
+</html>
