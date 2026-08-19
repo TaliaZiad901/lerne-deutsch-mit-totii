@@ -95,13 +95,11 @@ font-weight:bold;
 
 <body>
 
-
 <div id="startScreen">
 
 <h1>🎮 German Review Game 🇩🇪</h1>
 
 <h2>🏆 Review the Last 10 Lessons</h2>
-
 
 <div class="character" onclick="choose('girl')">
 
@@ -111,7 +109,6 @@ font-weight:bold;
 
 </div>
 
-
 <div class="character" onclick="choose('boy')">
 
 <img src="https://api.dicebear.com/9.x/adventurer/svg?seed=Max">
@@ -120,9 +117,7 @@ font-weight:bold;
 
 </div>
 
-
 <p id="selected">No Character Selected</p>
-
 
 <button onclick="startGame()">
 ▶ Start Game
@@ -130,425 +125,305 @@ font-weight:bold;
 
 </div>
 
-
 <script>
 
 let player="";
-
 let score=100;
-
 let current=0;
-
 let selectedWords=[];
-
 
 const questions=[
 
-
 /* ================= 1-5 CHOOSE ================= */
-
 
 {
 type:"mc",
-
 question:"😊 Wie geht's dir?",
-
 options:[
 "Mir geht's gut.",
 "Ich wohne in Kairo.",
 "Ich komme aus Ägypten.",
 "Ich heiße Anna."
 ],
-
 correct:"Mir geht's gut."
 },
 
-
 {
 type:"mc",
-
 question:"🌍 Woher kommst du?",
-
 options:[
 "Ich wohne in Kairo.",
 "Ich komme aus Ägypten.",
 "Mir geht's gut.",
 "Ich bin zehn Jahre alt."
 ],
-
 correct:"Ich komme aus Ägypten."
 },
 
-
 {
 type:"mc",
-
 question:"🏠 Wo wohnst du?",
-
 options:[
 "Ich komme aus Ägypten.",
 "Mir geht's gut.",
 "Ich wohne in Kairo.",
 "Ich heiße Anna."
 ],
-
 correct:"Ich wohne in Kairo."
 },
 
-
 {
 type:"mc",
-
 question:"🇩🇪 Was ist die Hauptstadt von Deutschland?",
-
 options:[
 "Paris",
 "Berlin",
 "Madrid",
 "Rom"
 ],
-
 correct:"Berlin"
 },
 
-
 {
 type:"mc",
-
 question:"🪑 Was ist das?",
-
 options:[
 "die Brille",
 "der Stuhl",
 "das Geld",
 "die Tasche"
 ],
-
 correct:"der Stuhl"
 },
 
-
 /* ================= 6-10 REARRANGE ================= */
-
 
 {
 type:"rearrange",
-
 question:"🔄 Arrange the words:",
-
 words:["geht's","Wie","dir"],
-
 answer:"Wie geht's dir?"
 },
 
-
 {
 type:"rearrange",
-
 question:"🔄 Arrange the words:",
-
 words:["kommst","Woher","du"],
-
 answer:"Woher kommst du?"
 },
 
-
 {
 type:"rearrange",
-
 question:"🔄 Arrange the words:",
-
 words:["wohnst","Wo","du"],
-
 answer:"Wo wohnst du?"
 },
 
-
 {
 type:"rearrange",
-
 question:"🔄 Arrange the words:",
-
 words:["komme","Ich","Ägypten","aus"],
-
 answer:"Ich komme aus Ägypten."
 },
 
-
 {
 type:"rearrange",
-
 question:"🔄 Arrange the words:",
-
 words:["wohne","Ich","Kairo","in"],
-
 answer:"Ich wohne in Kairo."
 },
-
 
 /* ================= 11-15 WRITING ================= */
 
-
 {
 type:"writing",
-
 question:"✍️ Write 'I am fine' in German.",
-
 answer:"Mir geht's gut."
 },
 
-
 {
 type:"writing",
-
 question:"✍️ Write 'I come from Egypt' in German.",
-
 answer:"Ich komme aus Ägypten."
 },
 
-
 {
 type:"writing",
-
 question:"✍️ Write 'I live in Cairo' in German.",
-
 answer:"Ich wohne in Kairo."
 },
 
-
 {
 type:"writing",
-
 question:"✍️ Write 'Can I go to the bathroom?' in German.",
-
 answer:"Darf ich ins Bad gehen?"
 },
 
-
 {
 type:"writing",
-
 question:"✍️ Write 'Bathroom, please' in German.",
-
 answer:"Toilette, bitte."
 },
 
-
 /* ================= 16-20 MATCH ================= */
-
 
 {
 type:"match",
-
 question:"🔗 Match: Deutschland 🇩🇪",
-
 options:[
 "Berlin",
 "Paris",
 "Madrid",
 "Rom"
 ],
-
 correct:"Berlin"
 },
 
-
 {
 type:"match",
-
 question:"🔗 Match: Frankreich 🇫🇷",
-
 options:[
 "Berlin",
 "Paris",
 "Madrid",
 "Rom"
 ],
-
 correct:"Paris"
 },
 
-
 {
 type:"match",
-
 question:"🔗 Match: Spanien 🇪🇸",
-
 options:[
 "Berlin",
 "Paris",
 "Madrid",
 "Rom"
 ],
-
 correct:"Madrid"
 },
 
-
 {
 type:"match",
-
 question:"🔗 Match: die Brille 👓",
-
 options:[
 "📖 Book",
 "👓 Glasses",
 "🎒 Bag",
 "💵 Money"
 ],
-
 correct:"👓 Glasses"
 },
 
-
 {
 type:"match",
-
 question:"🔗 Match: das Geld 💵",
-
 options:[
 "🪑 Chair",
 "💵 Money",
 "📖 Book",
 "👓 Glasses"
 ],
-
 correct:"💵 Money"
 },
 
-
 /* ================= 21-25 TRANSLATE ================= */
-
 
 {
 type:"writing",
-
 question:"🌍 Translate: 'What is your name?'",
-
 answer:"Wie heißt du?"
 },
 
-
 {
 type:"writing",
-
 question:"🌍 Translate: 'How old are you?'",
-
 answer:"Wie alt bist du?"
 },
 
-
 {
 type:"writing",
-
 question:"🌍 Translate: 'I am ten years old'",
-
 answer:"Ich bin zehn Jahre alt."
 },
 
-
 {
 type:"writing",
-
 question:"🌍 Translate: 'Good morning'",
-
 answer:"Guten Morgen"
 },
 
-
 {
 type:"writing",
-
 question:"🌍 Translate: 'Goodbye'",
-
 answer:"Tschüss"
 },
 
-
 /* ================= 26-30 THINGS ================= */
-
 
 {
 type:"mc",
-
 question:"👓 Was ist das?",
-
 options:[
 "die Brille",
 "das Buch",
 "der Stuhl",
 "das Geld"
 ],
-
 correct:"die Brille"
 },
 
-
 {
 type:"mc",
-
 question:"📖 Was ist das?",
-
 options:[
 "die Tasche",
 "das Buch",
 "die Brille",
 "das Geld"
 ],
-
 correct:"das Buch"
 },
 
-
 {
 type:"mc",
-
 question:"🎒 Was ist das?",
-
 options:[
 "der Stuhl",
 "die Tasche",
 "das Buch",
 "die Brille"
 ],
-
 correct:"die Tasche"
 },
 
-
 {
 type:"mc",
-
 question:"💵 Was ist das?",
-
 options:[
 "das Geld",
 "der Sessel",
 "das Buch",
 "die Brille"
 ],
-
 correct:"das Geld"
 },
 
-
 {
 type:"mc",
-
 question:"🛋️ Was ist das?",
-
 options:[
 "der Sessel",
 "die Tasche",
 "der Stuhl",
 "das Heft"
 ],
-
 correct:"der Sessel"
 }
 
 ];
 
+/* ================= CHARACTER ================= */
 
 function choose(name){
 
@@ -559,6 +434,7 @@ document.getElementById("selected").innerHTML=
 
 }
 
+/* ================= START ================= */
 
 function startGame(){
 
@@ -571,13 +447,13 @@ return;
 }
 
 score=100;
-
 current=0;
 
 showQuestion();
 
 }
 
+/* ================= SHOW QUESTION ================= */
 
 function showQuestion(){
 
@@ -587,8 +463,7 @@ selectedWords=[];
 
 let html="";
 
-
-/* ================= MULTIPLE CHOICE ================= */
+/* MULTIPLE CHOICE */
 
 if(q.type=="mc"){
 
@@ -604,8 +479,7 @@ ${option}
 
 }
 
-
-/* ================= REARRANGE ================= */
+/* REARRANGE */
 
 else if(q.type=="rearrange"){
 
@@ -625,66 +499,47 @@ ${word}
 
 </div>
 
-
 <h3 id="answerBox"></h3>
 
-
 <button onclick="undoWord()">
-
 ↩️ Undo
-
 </button>
-
 
 <button onclick="clearWords()">
-
 🗑️ Clear
-
 </button>
-
 
 <br>
 
-
 <button onclick="checkRearrange()">
-
 ✅ Check Answer
-
 </button>
 
 `;
 
 }
 
-
-/* ================= WRITING ================= */
+/* WRITING */
 
 else if(q.type=="writing"){
 
 html=`
 
 <input id="writingAnswer"
-
 type="text"
-
 placeholder="Write your answer here">
-
 
 <br>
 
-
 <button onclick="checkWriting()">
-
 ✅ Check Answer
-
 </button>
 
 `;
 
 }
 
-
-/* ================= MATCH ================= */
+/* MATCH */
 
 else if(q.type=="match"){
 
@@ -700,7 +555,6 @@ ${option}
 
 }
 
-
 document.getElementById("startScreen").innerHTML=`
 
 <h1>🎮 German Review Game 🇩🇪</h1>
@@ -708,7 +562,6 @@ document.getElementById("startScreen").innerHTML=`
 <h2>⭐ Score: ${score}/100</h2>
 
 <h2>📚 Question ${current+1} / ${questions.length}</h2>
-
 
 <div style="background:white;color:black;padding:20px;border-radius:20px;width:85%;margin:auto;">
 
@@ -718,13 +571,11 @@ ${html}
 
 </div>
 
-
 <p id="msg"></p>
 
 `;
 
 }
-
 
 /* ================= MC ================= */
 
@@ -744,7 +595,6 @@ wrongAnswer(q.correct);
 
 }
 
-
 /* ================= MATCH ================= */
 
 function checkMatch(answer){
@@ -763,7 +613,6 @@ wrongAnswer(q.correct);
 
 }
 
-
 /* ================= REARRANGE ================= */
 
 function addWord(word,index){
@@ -771,11 +620,9 @@ function addWord(word,index){
 selectedWords.push(word);
 
 document.getElementById("answerBox").innerHTML=
-
 selectedWords.join(" ");
 
 }
-
 
 function undoWord(){
 
@@ -784,13 +631,11 @@ if(selectedWords.length>0){
 selectedWords.pop();
 
 document.getElementById("answerBox").innerHTML=
-
 selectedWords.join(" ");
 
 }
 
 }
-
 
 function clearWords(){
 
@@ -800,31 +645,21 @@ document.getElementById("answerBox").innerHTML="";
 
 }
 
-
 function checkRearrange(){
 
 let q=questions[current];
 
 let answer=selectedWords.join(" ");
 
-
 let correctAnswerText=q.answer
-
 .toLowerCase()
-
 .replace(/[.!?]/g,"")
-
 .trim();
-
 
 let userAnswer=answer
-
 .toLowerCase()
-
 .replace(/[.!?]/g,"")
-
 .trim();
-
 
 if(userAnswer==correctAnswerText){
 
@@ -838,33 +673,22 @@ wrongAnswer(q.answer);
 
 }
 
-
 /* ================= WRITING ================= */
 
 function checkWriting(){
 
 let q=questions[current];
 
-
 let answer=document
-
 .getElementById("writingAnswer")
-
 .value
-
 .trim()
-
 .toLowerCase()
-
 .replace(/[.!?]/g,"");
-
 
 let correct=q.answer
-
 .toLowerCase()
-
 .replace(/[.!?]/g,"");
-
 
 if(answer==correct){
 
@@ -878,20 +702,16 @@ wrongAnswer(q.answer);
 
 }
 
-
 /* ================= CORRECT ================= */
 
 function correctAnswer(){
 
 document.getElementById("msg").innerHTML=
-
 "🎉 Correct!";
-
 
 setTimeout(nextQuestion,1000);
 
 }
-
 
 /* ================= WRONG ================= */
 
@@ -899,32 +719,22 @@ function wrongAnswer(correct){
 
 score-=3;
 
-
 if(score<0){
-
 score=0;
-
 }
 
-
 document.getElementById("msg").innerHTML=
-
-"❌ Wrong!<br>✅ Correct Answer: "+
-
-correct;
-
+"❌ Wrong!<br>✅ Correct Answer: "+correct;
 
 setTimeout(nextQuestion,2000);
 
 }
-
 
 /* ================= NEXT ================= */
 
 function nextQuestion(){
 
 current++;
-
 
 if(current<questions.length){
 
@@ -938,7 +748,6 @@ finishGame();
 
 }
 
-
 /* ================= FINISH ================= */
 
 function finishGame(){
@@ -951,53 +760,32 @@ document.getElementById("startScreen").innerHTML=`
 
 <h1>${score}/100</h1>
 
-
 <p>
 
 ${
 score==100
-
 ?
-
 "🥇 Perfect! You are amazing!"
-
 :
-
 score>=90
-
 ?
-
 "🌟 Excellent!"
-
 :
-
 score>=70
-
 ?
-
 "👏 Very Good!"
-
 :
-
 score>=50
-
 ?
-
 "😊 Good!"
-
 :
-
 "💪 Keep Practicing!"
-
 }
 
 </p>
 
-
 <button onclick="location.reload()">
-
 🔄 Play Again
-
 </button>
 
 `;
