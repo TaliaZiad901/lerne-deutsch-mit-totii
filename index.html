@@ -25,11 +25,6 @@ padding:30px;
 
 header h1{
 font-size:35px;
-margin:0;
-}
-
-header p{
-font-size:20px;
 }
 
 nav{
@@ -79,12 +74,10 @@ button:hover{
 background:orange;
 }
 
-input,
-select,
-textarea{
-padding:12px;
-font-size:17px;
-border-radius:10px;
+input,select,textarea{
+padding:10px;
+font-size:16px;
+border-radius:8px;
 border:1px solid #aaa;
 }
 
@@ -97,7 +90,6 @@ footer{
 background:#333;
 color:white;
 padding:15px;
-margin-top:30px;
 }
 
 </style>
@@ -116,7 +108,6 @@ margin-top:30px;
 </header>
 
 
-
 <nav>
 
 <a href="index.html">Home</a>
@@ -124,7 +115,6 @@ margin-top:30px;
 <a href="#contact">Contact</a>
 
 </nav>
-
 
 
 <!-- ================= EXAM ================= -->
@@ -137,7 +127,7 @@ margin-top:30px;
 
 <p>🏆 Complete Exam – Review Everything You Learned!</p>
 
-<p><b>50 Questions • 90 Minutes</b></p>
+<p>📚 50 Questions • ⏱️ 90 Minutes</p>
 
 <p>🎧 Listening included</p>
 
@@ -145,14 +135,15 @@ margin-top:30px;
 
 <p>📄 Paragraph included</p>
 
-<button onclick="startExam()">
-📝 Start Exam
-</button>
+<a href="Quiz.html">
+
+<button>▶ Start Exam</button>
+
+</a>
 
 </div>
 
 </section>
-
 
 
 <!-- ================= LEARNING ================= -->
@@ -164,9 +155,7 @@ margin-top:30px;
 
 <div class="box">
 
-<a href="Basics.html">
-📖 Basics
-</a>
+<a href="Basics.html">📖 Basics</a>
 
 <p>Videos and basic lessons</p>
 
@@ -175,9 +164,7 @@ margin-top:30px;
 
 <div class="box">
 
-<a href="vocabulary.html">
-📝 Vocabulary
-</a>
+<a href="vocabulary.html">📝 Vocabulary</a>
 
 <p>Learn new German words</p>
 
@@ -186,16 +173,13 @@ margin-top:30px;
 
 <div class="box">
 
-<a href="Exams.html">
-📚 Grammar
-</a>
+<a href="Exams.html">📚 Grammar</a>
 
 <p>Grammar rules and lessons</p>
 
 </div>
 
 </section>
-
 
 
 <!-- ================= GAMES ================= -->
@@ -207,16 +191,17 @@ margin-top:30px;
 
 <div class="box">
 
-<h2>🎮 Games</h2>
+<a href="games.html">🎮 Games</a>
 
 <p>Play German learning games</p>
 
-<button onclick="openGames()">
-▶ Open Games
-</button>
+<a href="games.html">
+
+<button>▶ Open Games</button>
+
+</a>
 
 </div>
-
 
 
 <div class="box">
@@ -225,12 +210,13 @@ margin-top:30px;
 
 <p>Review the last 5 lessons!</p>
 
-<button onclick="openGame5()">
-▶ Play Review Game
-</button>
+<a href="game on the 5 lessons.html">
+
+<button>▶ Play Review Game</button>
+
+</a>
 
 </div>
-
 
 
 <div class="box">
@@ -239,14 +225,15 @@ margin-top:30px;
 
 <p>Review the last 10 lessons!</p>
 
-<button onclick="openGame10()">
-▶ Play Review Game
-</button>
+<a href="game on the 10 lessons.html">
+
+<button>▶ Play Review Game</button>
+
+</a>
 
 </div>
 
 </section>
-
 
 
 <!-- ================= QUIZZES ================= -->
@@ -257,18 +244,19 @@ margin-top:30px;
 
 <div class="box">
 
-<h2>📚 Quizzes</h2>
+<a href="quizzes.html">📚 Quizzes</a>
 
 <p>Choose your lesson and test your knowledge</p>
 
-<button onclick="openQuizzes()">
-▶ Open Quizzes
-</button>
+<a href="quizzes.html">
+
+<button>▶ Open Quizzes</button>
+
+</a>
 
 </div>
 
 </section>
-
 
 
 <!-- ================= CONTACT ================= -->
@@ -278,40 +266,25 @@ margin-top:30px;
 <h2>📞 Contact</h2>
 
 
-<p>
-
 <a href="https://whatsapp.com/channel/0029Vb8DcboJENy3RYLD870i">
-
 WhatsApp
-
 </a>
 
-</p>
+<br><br>
 
-
-<p>
 
 <a href="https://www.facebook.com/share/1Km8KfLw8H/">
-
 Facebook
-
 </a>
 
-</p>
+<br><br>
 
 
-<p>
-
-<a href="https://youtube.com/@taliaziad-s5">
-
+<a href="https://youtube.com/@taliaziad-s5?si=JeighOpFSITyXxv8">
 YouTube
-
 </a>
-
-</p>
 
 </section>
-
 
 
 <footer>
@@ -321,17 +294,11 @@ YouTube
 </footer>
 
 
+<!-- ================= RATING ================= -->
 
 <hr>
 
-
-
-<!-- ================= RATING ================= -->
-
-<section>
-
 <h2>⭐ Rate Our Website</h2>
-
 
 <input
 type="text"
@@ -372,23 +339,54 @@ placeholder="Your Opinion">
 
 
 <button onclick="submitRating()">
+
 Submit Rating
+
 </button>
 
 
 <div id="message"></div>
 
-</section>
+
+<script>
+
+function submitRating(){
+
+let name =
+document.getElementById("name").value;
+
+let rating =
+document.getElementById("rating").value;
+
+let opinion =
+document.getElementById("opinion").value;
 
 
+if(name === "" || rating === ""){
 
-<hr>
+alert("Please enter your name and rating");
 
+return;
+
+}
+
+
+document.getElementById("message").innerHTML =
+
+"Thank you " + name + " ❤️<br>" +
+
+"Your rating: " + rating + "<br>" +
+
+opinion;
+
+}
+
+</script>
 
 
 <!-- ================= VISITORS ================= -->
 
-<section>
+<hr>
 
 <h2>👥 Visitors</h2>
 
@@ -401,98 +399,16 @@ placeholder="Enter your name"
 
 
 <button onclick="joinWebsite()">
+
 Join
+
 </button>
 
 
 <div id="visitorsList"></div>
 
-</section>
-
-
 
 <script>
-
-/* ================= OPEN EXAM ================= */
-
-function startExam(){
-
-window.location.href="Quiz.html";
-
-}
-
-
-/* ================= OPEN GAMES ================= */
-
-function openGames(){
-
-window.location.href="games.html";
-
-}
-
-
-/* ================= GAME 5 ================= */
-
-function openGame5(){
-
-window.location.href="game on the 5 lessons.html";
-
-}
-
-
-/* ================= GAME 10 ================= */
-
-function openGame10(){
-
-window.location.href="game on the 10 lessons.html";
-
-}
-
-
-/* ================= QUIZZES ================= */
-
-function openQuizzes(){
-
-window.location.href="quizzes.html";
-
-}
-
-
-/* ================= RATING ================= */
-
-function submitRating(){
-
-let name =
-document.getElementById("name").value.trim();
-
-let rating =
-document.getElementById("rating").value;
-
-let opinion =
-document.getElementById("opinion").value.trim();
-
-
-if(name==="" || rating===""){
-
-alert("Please enter your name and rating");
-
-return;
-
-}
-
-
-document.getElementById("message").innerHTML=
-
-"<h3>Thank you "+name+" ❤️</h3>"+
-
-"<p>Your rating: "+rating+"</p>"+
-
-"<p>"+opinion+"</p>";
-
-}
-
-
-/* ================= SUPABASE ================= */
 
 const SUPABASE_URL =
 "https://rxrrxqdsfodrhrpvrhti.supabase.co";
@@ -507,7 +423,7 @@ let name =
 document.getElementById("visitorName").value.trim();
 
 
-if(name===""){
+if(name === ""){
 
 alert("Please enter your name");
 
@@ -516,11 +432,9 @@ return;
 }
 
 
-try{
-
 const response = await fetch(
 
-SUPABASE_URL+"/rest/v1/visitors",
+`${SUPABASE_URL}/rest/v1/visitors`,
 
 {
 
@@ -531,12 +445,13 @@ headers:{
 "apikey":SUPABASE_ANON_KEY,
 
 "Authorization":
-"Bearer "+SUPABASE_ANON_KEY,
+`Bearer ${SUPABASE_ANON_KEY}`,
 
 "Content-Type":
 "application/json",
 
-"Prefer":"return=minimal"
+"Prefer":
+"return=minimal"
 
 },
 
@@ -546,30 +461,18 @@ name:name
 
 })
 
-}
-
-);
+});
 
 
 if(response.ok){
 
-alert("Welcome "+name+" ❤️");
+alert("Welcome " + name + " ❤️");
 
 document.getElementById("visitorName").value="";
 
-}
-
-else{
+}else{
 
 alert("Something went wrong ❌");
-
-}
-
-}
-
-catch(error){
-
-alert("Connection error ❌");
 
 }
 
