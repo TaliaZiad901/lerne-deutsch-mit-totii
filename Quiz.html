@@ -29,34 +29,38 @@ text-align:center;
 }
 
 header h1{
-font-size:38px;
+font-size:36px;
 margin:5px;
 }
 
-#start{
+#startPage{
 text-align:center;
-padding:30px;
+padding:30px 15px;
 }
 
 .info{
 background:white;
 width:90%;
-max-width:750px;
+max-width:700px;
 margin:20px auto;
 padding:30px;
 border-radius:20px;
-box-shadow:0 0 10px #ccc;
+box-shadow:0 0 12px #ccc;
 }
 
 .info h2{
 color:purple;
 }
 
+.info p{
+font-size:19px;
+}
+
 button{
-padding:12px 25px;
+padding:13px 28px;
 font-size:18px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 background:#FFD54F;
 cursor:pointer;
 font-weight:bold;
@@ -69,7 +73,7 @@ background:orange;
 
 #exam{
 display:none;
-padding:20px;
+padding:15px;
 }
 
 #timer{
@@ -82,7 +86,7 @@ font-size:25px;
 font-weight:bold;
 padding:15px;
 text-align:center;
-box-shadow:0 2px 8px #555;
+border-radius:0 0 15px 15px;
 }
 
 .question{
@@ -91,7 +95,7 @@ width:95%;
 max-width:850px;
 margin:20px auto;
 padding:22px;
-border-radius:15px;
+border-radius:16px;
 box-shadow:0 0 8px #ccc;
 }
 
@@ -101,10 +105,9 @@ color:purple;
 
 .option{
 display:block;
-width:95%;
-margin:8px auto;
-padding:12px;
 background:#eee;
+padding:12px;
+margin:8px 0;
 border-radius:10px;
 text-align:left;
 cursor:pointer;
@@ -116,50 +119,53 @@ background:#ddd;
 
 input[type="text"],
 textarea{
-width:90%;
+width:95%;
 padding:12px;
-font-size:18px;
+font-size:17px;
 border:2px solid #aaa;
 border-radius:10px;
-margin:10px;
+margin:8px 0;
 }
 
 textarea{
-height:180px;
+height:160px;
 resize:vertical;
+}
+
+.center{
+text-align:center;
 }
 
 #result{
 display:none;
 text-align:center;
+padding:30px 15px;
+}
+
+.resultBox{
+background:white;
+max-width:700px;
+margin:auto;
 padding:30px;
+border-radius:20px;
+box-shadow:0 0 12px #ccc;
 }
 
-.correct{
-color:green;
-font-weight:bold;
-}
-
-.wrong{
-color:red;
-font-weight:bold;
+#score{
+font-size:40px;
+color:purple;
 }
 
 .listenBox{
 background:#eee;
 padding:15px;
-border-radius:10px;
-margin:15px;
-}
-
-#submitBox{
-text-align:center;
-padding:30px;
+border-radius:12px;
 }
 
 </style>
 
 </head>
+
 
 <body>
 
@@ -173,9 +179,10 @@ padding:30px;
 </header>
 
 
-<!-- ================= START ================= -->
 
-<div id="start">
+<!-- ================= START PAGE ================= -->
+
+<div id="startPage">
 
 <div class="info">
 
@@ -183,28 +190,22 @@ padding:30px;
 
 <h3>📚 Complete Exam</h3>
 
-<p>Questions: <b>50</b></p>
+<p>📝 Questions: <b>50</b></p>
 
-<p>Time: <b>90 Minutes</b></p>
-
-<p>🔤 Alphabet included</p>
-
-<p>👋 Greetings included</p>
-
-<p>🔢 Numbers 0–20 included</p>
-
-<p>🙋 Personal information included</p>
+<p>⏱️ Time: <b>90 Minutes</b></p>
 
 <p>🎧 Listening included</p>
 
-<p>✍️ Translation included</p>
+<p>✍️ Writing included</p>
 
 <p>📄 Paragraph included</p>
 
-<br>
+<p>🇩🇪 This exam reviews everything you learned.</p>
 
 <button onclick="startExam()">
+
 ▶ Start Exam
+
 </button>
 
 </div>
@@ -212,16 +213,20 @@ padding:30px;
 </div>
 
 
+
 <!-- ================= EXAM ================= -->
 
 <div id="exam">
 
 <div id="timer">
+
 ⏱️ Time: 90:00
+
 </div>
 
 
-<!-- 1 -->
+
+<!-- QUESTION 1 -->
 
 <div class="question">
 
@@ -246,7 +251,8 @@ padding:30px;
 </div>
 
 
-<!-- 2 -->
+
+<!-- QUESTION 2 -->
 
 <div class="question">
 
@@ -271,609 +277,635 @@ padding:30px;
 </div>
 
 
-<!-- 3 -->
+
+<!-- QUESTION 3 -->
 
 <div class="question">
 
-<h3>3. Which letter comes after M?</h3>
+<h3>3. What sound does "EI" make in German?</h3>
 
 <label class="option">
-<input type="radio" name="q3" value="N"> N
+<input type="radio" name="q3" value="ai"> "ai" / آي
 </label>
 
 <label class="option">
-<input type="radio" name="q3" value="O"> O
+<input type="radio" name="q3" value="oi"> "oi" / أوي
 </label>
 
 <label class="option">
-<input type="radio" name="q3" value="L"> L
+<input type="radio" name="q3" value="sh"> "sh"
 </label>
 
 <label class="option">
-<input type="radio" name="q3" value="P"> P
+<input type="radio" name="q3" value="kh"> "kh"
 </label>
 
 </div>
 
 
-<!-- 4 -->
+
+<!-- QUESTION 4 -->
 
 <div class="question">
 
-<h3>4. Which letter comes before Z?</h3>
+<h3>4. What does "Tschüss" mean?</h3>
 
 <label class="option">
-<input type="radio" name="q4" value="Y"> Y
+<input type="radio" name="q4" value="Hello"> Hello
 </label>
 
 <label class="option">
-<input type="radio" name="q4" value="X"> X
+<input type="radio" name="q4" value="Goodbye"> Goodbye
 </label>
 
 <label class="option">
-<input type="radio" name="q4" value="W"> W
+<input type="radio" name="q4" value="Thank you"> Thank you
 </label>
 
 <label class="option">
-<input type="radio" name="q4" value="A"> A
+<input type="radio" name="q4" value="Good morning"> Good morning
 </label>
 
 </div>
 
 
-<!-- 5 -->
+
+<!-- QUESTION 5 -->
 
 <div class="question">
 
-<h3>5. What sound does "EI" make in German?</h3>
+<h3>5. What does "Guten Morgen" mean?</h3>
 
 <label class="option">
-<input type="radio" name="q5" value="ai"> "ai"
+<input type="radio" name="q5" value="Good morning"> Good morning
 </label>
 
 <label class="option">
-<input type="radio" name="q5" value="oi"> "oi"
+<input type="radio" name="q5" value="Goodbye"> Goodbye
 </label>
 
 <label class="option">
-<input type="radio" name="q5" value="sh"> "sh"
+<input type="radio" name="q5" value="Hello"> Hello
 </label>
 
 <label class="option">
-<input type="radio" name="q5" value="ch"> "ch"
+<input type="radio" name="q5" value="Good night"> Good night
 </label>
 
 </div>
 
 
-<!-- 6 -->
+
+<!-- QUESTION 6 -->
 
 <div class="question">
 
-<h3>6. What does "Tschüss" mean?</h3>
+<h3>6. Complete: Wie _____ du?</h3>
+
+<input type="text" id="q6">
+
+</div>
+
+
+
+<!-- QUESTION 7 -->
+
+<div class="question">
+
+<h3>7. What does "Wie heißt du?" mean?</h3>
 
 <label class="option">
-<input type="radio" name="q6" value="Hello"> Hello
+<input type="radio" name="q7" value="What is your name?">
+What is your name?
 </label>
 
 <label class="option">
-<input type="radio" name="q6" value="Goodbye"> Goodbye
+<input type="radio" name="q7" value="How old are you?">
+How old are you?
 </label>
 
 <label class="option">
-<input type="radio" name="q6" value="Thank you"> Thank you
+<input type="radio" name="q7" value="Where do you live?">
+Where do you live?
 </label>
 
 <label class="option">
-<input type="radio" name="q6" value="Good morning"> Good morning
+<input type="radio" name="q7" value="How are you?">
+How are you?
 </label>
 
 </div>
 
 
-<!-- 7 -->
+
+<!-- QUESTION 8 -->
 
 <div class="question">
 
-<h3>7. What does "Guten Morgen" mean?</h3>
-
-<label class="option">
-<input type="radio" name="q7" value="Good morning"> Good morning
-</label>
-
-<label class="option">
-<input type="radio" name="q7" value="Goodbye"> Goodbye
-</label>
-
-<label class="option">
-<input type="radio" name="q7" value="Good night"> Good night
-</label>
-
-<label class="option">
-<input type="radio" name="q7" value="Thank you"> Thank you
-</label>
-
-</div>
-
-
-<!-- 8 -->
-
-<div class="question">
-
-<h3>8. Complete: Wie _____ du?</h3>
+<h3>8. Write "My name is Anna" in German.</h3>
 
 <input type="text" id="q8">
 
 </div>
 
 
-<!-- 9 -->
+
+<!-- QUESTION 9 -->
 
 <div class="question">
 
-<h3>9. What does "Wie heißt du?" mean?</h3>
+<h3>9. What is 0 in German?</h3>
+
+<input type="text" id="q9">
+
+</div>
+
+
+
+<!-- QUESTION 10 -->
+
+<div class="question">
+
+<h3>10. What is 10 in German?</h3>
 
 <label class="option">
-<input type="radio" name="q9" value="name"> What is your name?
+<input type="radio" name="q10" value="zehn"> zehn
 </label>
 
 <label class="option">
-<input type="radio" name="q9" value="age"> How old are you?
+<input type="radio" name="q10" value="neun"> neun
 </label>
 
 <label class="option">
-<input type="radio" name="q9" value="live"> Where do you live?
+<input type="radio" name="q10" value="zwölf"> zwölf
 </label>
 
 <label class="option">
-<input type="radio" name="q9" value="fine"> How are you?
+<input type="radio" name="q10" value="zwanzig"> zwanzig
 </label>
 
 </div>
 
 
-<!-- 10 -->
+
+<!-- QUESTION 11 -->
 
 <div class="question">
 
-<h3>10. Write "My name is Anna" in German.</h3>
-
-<input type="text" id="q10">
-
-</div>
-
-
-<!-- 11 -->
-
-<div class="question">
-
-<h3>11. What is 0 in German?</h3>
+<h3>11. What is 20 in German?</h3>
 
 <input type="text" id="q11">
 
 </div>
 
 
-<!-- 12 -->
+
+<!-- QUESTION 12 -->
 
 <div class="question">
 
-<h3>12. What is 10 in German?</h3>
+<h3>12. What does "Wie alt bist du?" mean?</h3>
 
-<input type="text" id="q12">
+<label class="option">
+<input type="radio" name="q12" value="What is your name?">
+What is your name?
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="How old are you?">
+How old are you?
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="Where are you from?">
+Where are you from?
+</label>
+
+<label class="option">
+<input type="radio" name="q12" value="How are you?">
+How are you?
+</label>
 
 </div>
 
 
-<!-- 13 -->
+
+<!-- QUESTION 13 -->
 
 <div class="question">
 
-<h3>13. What is 20 in German?</h3>
+<h3>13. Complete: Ich bin zehn Jahre _____.</h3>
 
 <input type="text" id="q13">
 
 </div>
 
 
-<!-- 14 -->
+
+<!-- QUESTION 14 -->
 
 <div class="question">
 
-<h3>14. What does "Wie alt bist du?" mean?</h3>
+<h3>14. Translate: "How are you?"</h3>
 
-<label class="option">
-<input type="radio" name="q14" value="age"> How old are you?
-</label>
-
-<label class="option">
-<input type="radio" name="q14" value="name"> What is your name?
-</label>
-
-<label class="option">
-<input type="radio" name="q14" value="from"> Where are you from?
-</label>
-
-<label class="option">
-<input type="radio" name="q14" value="live"> Where do you live?
-</label>
+<input type="text" id="q14">
 
 </div>
 
 
-<!-- 15 -->
+
+<!-- QUESTION 15 -->
 
 <div class="question">
 
-<h3>15. Complete: Ich bin zehn Jahre _____.</h3>
-
-<input type="text" id="q15">
-
-</div>
-
-
-<!-- 16 -->
-
-<div class="question">
-
-<h3>16. Translate: "How are you?"</h3>
-
-<input type="text" id="q16">
-
-</div>
-
-
-<!-- 17 -->
-
-<div class="question">
-
-<h3>17. Choose the correct answer:</h3>
-
-<p>Wie geht's dir?</p>
+<h3>15. Wie geht's dir?</h3>
 
 <label class="option">
-<input type="radio" name="q17" value="good">
+<input type="radio" name="q15" value="Mir geht's gut.">
 Mir geht's gut.
 </label>
 
 <label class="option">
-<input type="radio" name="q17" value="live">
+<input type="radio" name="q15" value="Ich wohne in Kairo.">
 Ich wohne in Kairo.
 </label>
 
 <label class="option">
-<input type="radio" name="q17" value="from">
+<input type="radio" name="q15" value="Ich komme aus Ägypten.">
 Ich komme aus Ägypten.
 </label>
 
 <label class="option">
-<input type="radio" name="q17" value="name">
+<input type="radio" name="q15" value="Ich heiße Anna.">
 Ich heiße Anna.
 </label>
 
 </div>
 
 
-<!-- 18 -->
+
+<!-- QUESTION 16 -->
 
 <div class="question">
 
-<h3>18. Translate: "I am fine."</h3>
+<h3>16. Translate: "I am fine."</h3>
+
+<input type="text" id="q16">
+
+</div>
+
+
+
+<!-- QUESTION 17 -->
+
+<div class="question">
+
+<h3>17. What does "Woher kommst du?" mean?</h3>
+
+<label class="option">
+<input type="radio" name="q17" value="Where do you live?">
+Where do you live?
+</label>
+
+<label class="option">
+<input type="radio" name="q17" value="Where are you from?">
+Where are you from?
+</label>
+
+<label class="option">
+<input type="radio" name="q17" value="How old are you?">
+How old are you?
+</label>
+
+<label class="option">
+<input type="radio" name="q17" value="What is your name?">
+What is your name?
+</label>
+
+</div>
+
+
+
+<!-- QUESTION 18 -->
+
+<div class="question">
+
+<h3>18. Complete: Ich komme _____ Ägypten.</h3>
 
 <input type="text" id="q18">
 
 </div>
 
 
-<!-- 19 -->
+
+<!-- QUESTION 19 -->
 
 <div class="question">
 
-<h3>19. What does "Woher kommst du?" mean?</h3>
+<h3>19. What is the capital of Germany?</h3>
 
 <label class="option">
-<input type="radio" name="q19" value="from">
-Where are you from?
+<input type="radio" name="q19" value="Berlin"> Berlin
 </label>
 
 <label class="option">
-<input type="radio" name="q19" value="live">
-Where do you live?
+<input type="radio" name="q19" value="Paris"> Paris
 </label>
 
 <label class="option">
-<input type="radio" name="q19" value="age">
-How old are you?
+<input type="radio" name="q19" value="Madrid"> Madrid
 </label>
 
 <label class="option">
-<input type="radio" name="q19" value="name">
-What is your name?
+<input type="radio" name="q19" value="Rome"> Rome
 </label>
 
 </div>
 
 
-<!-- 20 -->
+
+<!-- QUESTION 20 -->
 
 <div class="question">
 
-<h3>20. Complete: Ich komme _____ Ägypten.</h3>
+<h3>20. What is the capital of France?</h3>
 
 <input type="text" id="q20">
 
 </div>
 
 
-<!-- 21 -->
+
+<!-- QUESTION 21 -->
 
 <div class="question">
 
-<h3>21. What is the capital of Germany?</h3>
+<h3>21. What does "Wo wohnst du?" mean?</h3>
 
 <label class="option">
-<input type="radio" name="q21" value="Berlin"> Berlin
-</label>
-
-<label class="option">
-<input type="radio" name="q21" value="Paris"> Paris
-</label>
-
-<label class="option">
-<input type="radio" name="q21" value="Madrid"> Madrid
-</label>
-
-<label class="option">
-<input type="radio" name="q21" value="Rome"> Rome
-</label>
-
-</div>
-
-
-<!-- 22 -->
-
-<div class="question">
-
-<h3>22. What does "Wo wohnst du?" mean?</h3>
-
-<label class="option">
-<input type="radio" name="q22" value="live">
+<input type="radio" name="q21" value="Where do you live?">
 Where do you live?
 </label>
 
 <label class="option">
-<input type="radio" name="q22" value="from">
+<input type="radio" name="q21" value="Where are you from?">
 Where are you from?
 </label>
 
 <label class="option">
-<input type="radio" name="q22" value="name">
-What is your name?
+<input type="radio" name="q21" value="How are you?">
+How are you?
 </label>
 
 <label class="option">
-<input type="radio" name="q22" value="age">
-How old are you?
+<input type="radio" name="q21" value="What is your name?">
+What is your name?
 </label>
 
 </div>
 
 
-<!-- 23 -->
+
+<!-- QUESTION 22 -->
 
 <div class="question">
 
-<h3>23. Complete: Ich wohne _____ Kairo.</h3>
+<h3>22. Complete: Ich wohne _____ Kairo.</h3>
+
+<input type="text" id="q22">
+
+</div>
+
+
+
+<!-- QUESTION 23 -->
+
+<div class="question">
+
+<h3>23. Translate: "I live in Cairo."</h3>
 
 <input type="text" id="q23">
 
 </div>
 
 
-<!-- 24 -->
+
+<!-- QUESTION 24 -->
 
 <div class="question">
 
-<h3>24. Translate: "I live in Cairo."</h3>
+<h3>24. Arrange the words:</h3>
+
+<p>du / heißt / Wie</p>
 
 <input type="text" id="q24">
 
 </div>
 
 
-<!-- 25 -->
+
+<!-- QUESTION 25 -->
 
 <div class="question">
 
 <h3>25. Arrange the words:</h3>
 
-<p><b>du / heißt / Wie</b></p>
+<p>bist / alt / du / Wie</p>
 
 <input type="text" id="q25">
 
 </div>
 
 
-<!-- 26 -->
+
+<!-- QUESTION 26 -->
 
 <div class="question">
 
-<h3>26. Arrange the words:</h3>
-
-<p><b>bist / alt / du / Wie</b></p>
+<h3>26. What is "food" in German?</h3>
 
 <input type="text" id="q26">
 
 </div>
 
 
-<!-- 27 -->
+
+<!-- QUESTION 27 -->
 
 <div class="question">
 
-<h3>27. What is "food" in German?</h3>
+<h3>27. What is "water" in German?</h3>
 
 <input type="text" id="q27">
 
 </div>
 
 
-<!-- 28 -->
+
+<!-- QUESTION 28 -->
 
 <div class="question">
 
-<h3>28. What is "water" in German?</h3>
+<h3>28. What is "to drink" in German?</h3>
 
-<input type="text" id="q28">
+<label class="option">
+<input type="radio" name="q28" value="trinken"> trinken
+</label>
+
+<label class="option">
+<input type="radio" name="q28" value="essen"> essen
+</label>
+
+<label class="option">
+<input type="radio" name="q28" value="wohnen"> wohnen
+</label>
+
+<label class="option">
+<input type="radio" name="q28" value="kommen"> kommen
+</label>
 
 </div>
 
 
-<!-- 29 -->
+
+<!-- QUESTION 29 -->
 
 <div class="question">
 
-<h3>29. What is "to drink" in German?</h3>
-
-<label class="option">
-<input type="radio" name="q29" value="trinken"> trinken
-</label>
+<h3>29. What is "to eat" in German?</h3>
 
 <label class="option">
 <input type="radio" name="q29" value="essen"> essen
 </label>
 
 <label class="option">
-<input type="radio" name="q29" value="wohnen"> wohnen
+<input type="radio" name="q29" value="trinken"> trinken
 </label>
 
 <label class="option">
 <input type="radio" name="q29" value="gehen"> gehen
 </label>
 
-</div>
-
-
-<!-- 30 -->
-
-<div class="question">
-
-<h3>30. What is "to eat" in German?</h3>
-
 <label class="option">
-<input type="radio" name="q30" value="essen"> essen
-</label>
-
-<label class="option">
-<input type="radio" name="q30" value="trinken"> trinken
-</label>
-
-<label class="option">
-<input type="radio" name="q30" value="gehen"> gehen
-</label>
-
-<label class="option">
-<input type="radio" name="q30" value="kommen"> kommen
+<input type="radio" name="q29" value="wohnen"> wohnen
 </label>
 
 </div>
 
 
-<!-- 31 -->
+
+<!-- QUESTION 30 -->
 
 <div class="question">
 
-<h3>31. Translate: "Bathroom, please."</h3>
+<h3>30. Translate: "Bathroom, please."</h3>
+
+<input type="text" id="q30">
+
+</div>
+
+
+
+<!-- QUESTION 31 -->
+
+<div class="question">
+
+<h3>31. Translate: "Can I go to the bathroom?"</h3>
 
 <input type="text" id="q31">
 
 </div>
 
 
-<!-- 32 -->
+
+<!-- QUESTION 32 -->
 
 <div class="question">
 
-<h3>32. Translate: "Can I go to the bathroom?"</h3>
-
-<input type="text" id="q32">
-
-</div>
-
-
-<!-- 33 -->
-
-<div class="question">
-
-<h3>33. Match: der Stuhl</h3>
+<h3>32. Match: der Stuhl</h3>
 
 <label class="option">
-<input type="radio" name="q33" value="chair"> Chair 🪑
+<input type="radio" name="q32" value="Chair"> Chair 🪑
 </label>
 
 <label class="option">
-<input type="radio" name="q33" value="book"> Book 📖
+<input type="radio" name="q32" value="Book"> Book 📖
 </label>
 
 <label class="option">
-<input type="radio" name="q33" value="bag"> Bag 🎒
+<input type="radio" name="q32" value="Bag"> Bag 🎒
 </label>
 
 <label class="option">
-<input type="radio" name="q33" value="money"> Money 💵
+<input type="radio" name="q32" value="Money"> Money 💵
 </label>
 
 </div>
 
 
-<!-- 34 -->
+
+<!-- QUESTION 33 -->
 
 <div class="question">
 
-<h3>34. Match: die Brille</h3>
+<h3>33. Match: die Brille</h3>
 
 <label class="option">
-<input type="radio" name="q34" value="glasses"> Glasses 👓
+<input type="radio" name="q33" value="Glasses"> Glasses 👓
 </label>
 
 <label class="option">
-<input type="radio" name="q34" value="chair"> Chair 🪑
+<input type="radio" name="q33" value="Chair"> Chair 🪑
 </label>
 
 <label class="option">
-<input type="radio" name="q34" value="money"> Money 💵
+<input type="radio" name="q33" value="Money"> Money 💵
 </label>
 
 <label class="option">
-<input type="radio" name="q34" value="bag"> Bag 🎒
+<input type="radio" name="q33" value="Bag"> Bag 🎒
 </label>
 
 </div>
 
 
-<!-- 35 -->
+
+<!-- QUESTION 34 -->
 
 <div class="question">
 
-<h3>35. Match: das Geld</h3>
+<h3>34. Match: das Geld</h3>
 
 <label class="option">
-<input type="radio" name="q35" value="money"> Money 💵
+<input type="radio" name="q34" value="Money"> Money 💵
 </label>
 
 <label class="option">
-<input type="radio" name="q35" value="book"> Book 📖
+<input type="radio" name="q34" value="Book"> Book 📖
 </label>
 
 <label class="option">
-<input type="radio" name="q35" value="chair"> Chair 🪑
+<input type="radio" name="q34" value="Chair"> Chair 🪑
 </label>
 
 <label class="option">
-<input type="radio" name="q35" value="glasses"> Glasses 👓
+<input type="radio" name="q34" value="Glasses"> Glasses 👓
 </label>
 
 </div>
+
+
+
+<!-- QUESTION 35 -->
+
+<div class="question">
+
+<h3>35. Translate: "Goodbye."</h3>
+
+<input type="text" id="q35">
+
+</div>
+
 
 
 <!-- LISTENING -->
@@ -882,7 +914,7 @@ How old are you?
 
 <h3>🎧 Listening — Questions 36–40</h3>
 
-<p>Listen carefully before answering.</p>
+<p>Press the button and listen carefully.</p>
 
 <button onclick="playListening()">
 🔊 Play Listening
@@ -890,14 +922,15 @@ How old are you?
 
 <div class="listenBox">
 
-The listening text will be read aloud in German.
+The audio will be read aloud in German.
 
 </div>
 
 </div>
 
 
-<!-- 36 -->
+
+<!-- QUESTION 36 -->
 
 <div class="question">
 
@@ -922,7 +955,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 37 -->
+
+<!-- QUESTION 37 -->
 
 <div class="question">
 
@@ -947,7 +981,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 38 -->
+
+<!-- QUESTION 38 -->
 
 <div class="question">
 
@@ -972,7 +1007,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 39 -->
+
+<!-- QUESTION 39 -->
 
 <div class="question">
 
@@ -997,7 +1033,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 40 -->
+
+<!-- QUESTION 40 -->
 
 <div class="question">
 
@@ -1022,7 +1059,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 41 -->
+
+<!-- QUESTION 41 -->
 
 <div class="question">
 
@@ -1033,7 +1071,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 42 -->
+
+<!-- QUESTION 42 -->
 
 <div class="question">
 
@@ -1044,7 +1083,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 43 -->
+
+<!-- QUESTION 43 -->
 
 <div class="question">
 
@@ -1055,7 +1095,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 44 -->
+
+<!-- QUESTION 44 -->
 
 <div class="question">
 
@@ -1068,7 +1109,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 45 -->
+
+<!-- QUESTION 45 -->
 
 <div class="question">
 
@@ -1081,7 +1123,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 46 -->
+
+<!-- QUESTION 46 -->
 
 <div class="question">
 
@@ -1092,7 +1135,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 47 -->
+
+<!-- QUESTION 47 -->
 
 <div class="question">
 
@@ -1103,7 +1147,8 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 48 -->
+
+<!-- QUESTION 48 -->
 
 <div class="question">
 
@@ -1114,20 +1159,22 @@ The listening text will be read aloud in German.
 </div>
 
 
-<!-- 49 -->
+
+<!-- QUESTION 49 -->
 
 <div class="question">
 
 <h3>49. Translate:</h3>
 
-<p><b>Guten Morgen!</b></p>
+<p>Guten Morgen!</p>
 
 <input type="text" id="q49">
 
 </div>
 
 
-<!-- 50 -->
+
+<!-- QUESTION 50 -->
 
 <div class="question">
 
@@ -1157,10 +1204,13 @@ placeholder="Schreibe über dich..."></textarea>
 </div>
 
 
-<div id="submitBox">
+
+<div class="center">
 
 <button onclick="submitExam()">
+
 📝 Submit Exam
+
 </button>
 
 </div>
@@ -1168,11 +1218,12 @@ placeholder="Schreibe über dich..."></textarea>
 </div>
 
 
+
 <!-- ================= RESULT ================= -->
 
 <div id="result">
 
-<div class="info">
+<div class="resultBox">
 
 <h1>🏆 Exam Finished!</h1>
 
@@ -1180,10 +1231,12 @@ placeholder="Schreibe über dich..."></textarea>
 
 <p id="message"></p>
 
-<p>📄 Question 50 (Paragraph) is reviewed separately.</p>
+<p>📄 Question 50 is reviewed separately.</p>
 
 <button onclick="location.reload()">
+
 🔄 Take Exam Again
+
 </button>
 
 </div>
@@ -1191,9 +1244,8 @@ placeholder="Schreibe über dich..."></textarea>
 </div>
 
 
-<script>
 
-/* ================= TIMER ================= */
+<script>
 
 let time = 90 * 60;
 
@@ -1202,17 +1254,21 @@ let timerInterval = null;
 let submitted = false;
 
 
+
 /* ================= START EXAM ================= */
 
 function startExam(){
 
-document.getElementById("start").style.display="none";
+document.getElementById("startPage").style.display="none";
 
 document.getElementById("exam").style.display="block";
+
+window.scrollTo(0,0);
 
 timerInterval = setInterval(updateTimer,1000);
 
 }
+
 
 
 /* ================= TIMER ================= */
@@ -1228,7 +1284,6 @@ document.getElementById("timer").innerHTML =
 String(minutes).padStart(2,"0") +
 ":" +
 String(seconds).padStart(2,"0");
-
 
 if(time <= 0){
 
@@ -1247,6 +1302,7 @@ time--;
 }
 
 
+
 /* ================= LISTENING ================= */
 
 function playListening(){
@@ -1254,11 +1310,12 @@ function playListening(){
 let text =
 "Hallo! Ich heiße Anna. Ich bin zehn Jahre alt. Ich komme aus Ägypten. Ich wohne in Kairo. Mir geht's gut.";
 
-let speech = new SpeechSynthesisUtterance(text);
+let speech =
+new SpeechSynthesisUtterance(text);
 
-speech.lang = "de-DE";
+speech.lang="de-DE";
 
-speech.rate = 0.8;
+speech.rate=0.8;
 
 speechSynthesis.cancel();
 
@@ -1267,11 +1324,13 @@ speechSynthesis.speak(speech);
 }
 
 
+
 /* ================= RADIO ================= */
 
 function getRadio(number){
 
-let answer = document.querySelector(
+let answer =
+document.querySelector(
 'input[name="q'+number+'"]:checked'
 );
 
@@ -1280,11 +1339,12 @@ return answer ? answer.value : "";
 }
 
 
+
 /* ================= NORMALIZE ================= */
 
-function normalize(answer){
+function normalize(text){
 
-return answer
+return text
 .toLowerCase()
 .trim()
 .replace(/[.!?]/g,"")
@@ -1293,1593 +1353,123 @@ return answer
 }
 
 
+
 /* ================= SUBMIT ================= */
 
 function submitExam(){
 
-if(submitted) return;
-
-submitted = true;
-
-clearInterval(timerInterval);
-
-let score = 0;
-
-
-/* 1 */
-
-if(getRadio(1) === "B") score++;
-
-
-/* 2 */
-
-if(getRadio(2) === "C") score++;
-
-
-/* 3 */
-
-if(getRadio(3) === "N") score++;
-
-
-/* 4 */
-
-if(getRadio(4) === "Y") score++;
-
-
-/* 5 */
-
-if(getRadio(5) === "ai") score++;
-
-
-/* 6 */
-
-if(getRadio(6) === "Goodbye") score++;
-
-
-/* 7 */
-
-if(getRadio(7) === "Good morning") score++;
-
-
-/* 8 */
-
-if(normalize(document.getElementById("q8").value) === "heißt")
-score++;
-
-
-/* 9 */
-
-if(getRadio(9) === "name") score++;
-
-
-/* 10 */
-
-if(normalize(document.getElementById("q10").value) === "mein name ist anna")
-score++;
-
-
-/* 11 */
-
-if(normalize(document.getElementById("q11").value) === "null")
-score++;
-
-
-/* 12 */
-
-if(normalize(document.getElementById("q12").value) === "zehn")
-score++;
-
-
-/* 13 */
-
-if(normalize(document.getElementById("q13").value) === "zwanzig")
-score++;
-
-
-/* 14 */
-
-if(getRadio(14) === "age") score++;
-
-
-/* 15 */
-
-if(normalize(document.getElementById("q15").value) === "alt")
-score++;
-
-
-/* 16 */
-
-if(normalize(document.getElementById("q16").value) === "wie geht's dir")
-score++;
-
-
-/* 17 */
-
-if(getRadio(17) === "good") score++;
-
-
-/* 18 */
-
-if(normalize(document.getElementById("q18").value) === "mir geht's gut")
-score++;
-
-
-/* 19 */
-
-if(getRadio(19) === "from") score++;
-
-
-/* 20 */
-
-if(normalize(document.getElementById("q20").value) === "aus")
-score++;
-
-
-/* 21 */
-
-if(getRadio(21) === "Berlin") score++;
-
-
-/* 22 */
-
-if(getRadio(22) === "live") score++;
-
-
-/* 23 */
-
-if(normalize(document.getElementById("q23").value) === "in")
-score++;
-
-
-/* 24 */
-
-if(normalize(document.getElementById("q24").value) === "ich wohne in kairo")
-score++;
-
-
-/* 25 */
-
-if(normalize(document.getElementById("q25").value) === "wie heißt du")
-score<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>German Exam</title>
-
-<style>
-
-*{
-box-sizing:border-box;
-}
-
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f2f2f2;
-color:#222;
-}
-
-header{
-background:purple;
-color:white;
-padding:25px;
-text-align:center;
-}
-
-header h1{
-font-size:38px;
-margin:5px;
-}
-
-#start{
-text-align:center;
-padding:30px;
-}
-
-.info{
-background:white;
-width:90%;
-max-width:750px;
-margin:20px auto;
-padding:30px;
-border-radius:20px;
-box-shadow:0 0 10px #ccc;
-}
-
-.info h2{
-color:purple;
-}
-
-button{
-padding:12px 25px;
-font-size:18px;
-border:none;
-border-radius:10px;
-background:#FFD54F;
-cursor:pointer;
-font-weight:bold;
-margin:8px;
-}
-
-button:hover{
-background:orange;
-}
-
-#exam{
-display:none;
-padding:20px;
-}
-
-#timer{
-position:sticky;
-top:0;
-z-index:100;
-background:#673AB7;
-color:white;
-font-size:25px;
-font-weight:bold;
-padding:15px;
-text-align:center;
-box-shadow:0 2px 8px #555;
-}
-
-.question{
-background:white;
-width:95%;
-max-width:850px;
-margin:20px auto;
-padding:22px;
-border-radius:15px;
-box-shadow:0 0 8px #ccc;
-}
-
-.question h3{
-color:purple;
-}
-
-.option{
-display:block;
-width:95%;
-margin:8px auto;
-padding:12px;
-background:#eee;
-border-radius:10px;
-text-align:left;
-cursor:pointer;
-}
-
-.option:hover{
-background:#ddd;
-}
-
-input[type="text"],
-textarea{
-width:90%;
-padding:12px;
-font-size:18px;
-border:2px solid #aaa;
-border-radius:10px;
-margin:10px;
-}
-
-textarea{
-height:180px;
-resize:vertical;
-}
-
-#result{
-display:none;
-text-align:center;
-padding:30px;
-}
-
-.correct{
-color:green;
-font-weight:bold;
-}
-
-.wrong{
-color:red;
-font-weight:bold;
-}
-
-.listenBox{
-background:#eee;
-padding:15px;
-border-radius:10px;
-margin:15px;
-}
-
-#submitBox{
-text-align:center;
-padding:30px;
-}
-
-</style>
-
-</head>
-
-<body>
-
-
-<header>
-
-<h1>📝 German Exam 🇩🇪</h1>
-
-<p>50 Questions • 90 Minutes</p>
-
-</header>
-
-
-<!-- ================= START ================= -->
-
-<div id="start">
-
-<div class="info">
-
-<h2>🇩🇪 German Exam</h2>
-
-<h3>📚 Complete Exam</h3>
-
-<p>Questions: <b>50</b></p>
-
-<p>Time: <b>90 Minutes</b></p>
-
-<p>🔤 Alphabet included</p>
-
-<p>👋 Greetings included</p>
-
-<p>🔢 Numbers 0–20 included</p>
-
-<p>🙋 Personal information included</p>
-
-<p>🎧 Listening included</p>
-
-<p>✍️ Translation included</p>
-
-<p>📄 Paragraph included</p>
-
-<br>
-
-<button onclick="startExam()">
-▶ Start Exam
-</button>
-
-</div>
-
-</div>
-
-
-<!-- ================= EXAM ================= -->
-
-<div id="exam">
-
-<div id="timer">
-⏱️ Time: 90:00
-</div>
-
-
-<!-- 1 -->
-
-<div class="question">
-
-<h3>1. Which letter comes after A?</h3>
-
-<label class="option">
-<input type="radio" name="q1" value="B"> B
-</label>
-
-<label class="option">
-<input type="radio" name="q1" value="C"> C
-</label>
-
-<label class="option">
-<input type="radio" name="q1" value="D"> D
-</label>
-
-<label class="option">
-<input type="radio" name="q1" value="E"> E
-</label>
-
-</div>
-
-
-<!-- 2 -->
-
-<div class="question">
-
-<h3>2. Which letter comes before D?</h3>
-
-<label class="option">
-<input type="radio" name="q2" value="C"> C
-</label>
-
-<label class="option">
-<input type="radio" name="q2" value="E"> E
-</label>
-
-<label class="option">
-<input type="radio" name="q2" value="B"> B
-</label>
-
-<label class="option">
-<input type="radio" name="q2" value="F"> F
-</label>
-
-</div>
-
-
-<!-- 3 -->
-
-<div class="question">
-
-<h3>3. Which letter comes after M?</h3>
-
-<label class="option">
-<input type="radio" name="q3" value="N"> N
-</label>
-
-<label class="option">
-<input type="radio" name="q3" value="O"> O
-</label>
-
-<label class="option">
-<input type="radio" name="q3" value="L"> L
-</label>
-
-<label class="option">
-<input type="radio" name="q3" value="P"> P
-</label>
-
-</div>
-
-
-<!-- 4 -->
-
-<div class="question">
-
-<h3>4. Which letter comes before Z?</h3>
-
-<label class="option">
-<input type="radio" name="q4" value="Y"> Y
-</label>
-
-<label class="option">
-<input type="radio" name="q4" value="X"> X
-</label>
-
-<label class="option">
-<input type="radio" name="q4" value="W"> W
-</label>
-
-<label class="option">
-<input type="radio" name="q4" value="A"> A
-</label>
-
-</div>
-
-
-<!-- 5 -->
-
-<div class="question">
-
-<h3>5. What sound does "EI" make in German?</h3>
-
-<label class="option">
-<input type="radio" name="q5" value="ai"> "ai"
-</label>
-
-<label class="option">
-<input type="radio" name="q5" value="oi"> "oi"
-</label>
-
-<label class="option">
-<input type="radio" name="q5" value="sh"> "sh"
-</label>
-
-<label class="option">
-<input type="radio" name="q5" value="ch"> "ch"
-</label>
-
-</div>
-
-
-<!-- 6 -->
-
-<div class="question">
-
-<h3>6. What does "Tschüss" mean?</h3>
-
-<label class="option">
-<input type="radio" name="q6" value="Hello"> Hello
-</label>
-
-<label class="option">
-<input type="radio" name="q6" value="Goodbye"> Goodbye
-</label>
-
-<label class="option">
-<input type="radio" name="q6" value="Thank you"> Thank you
-</label>
-
-<label class="option">
-<input type="radio" name="q6" value="Good morning"> Good morning
-</label>
-
-</div>
-
-
-<!-- 7 -->
-
-<div class="question">
-
-<h3>7. What does "Guten Morgen" mean?</h3>
-
-<label class="option">
-<input type="radio" name="q7" value="Good morning"> Good morning
-</label>
-
-<label class="option">
-<input type="radio" name="q7" value="Goodbye"> Goodbye
-</label>
-
-<label class="option">
-<input type="radio" name="q7" value="Good night"> Good night
-</label>
-
-<label class="option">
-<input type="radio" name="q7" value="Thank you"> Thank you
-</label>
-
-</div>
-
-
-<!-- 8 -->
-
-<div class="question">
-
-<h3>8. Complete: Wie _____ du?</h3>
-
-<input type="text" id="q8">
-
-</div>
-
-
-<!-- 9 -->
-
-<div class="question">
-
-<h3>9. What does "Wie heißt du?" mean?</h3>
-
-<label class="option">
-<input type="radio" name="q9" value="name"> What is your name?
-</label>
-
-<label class="option">
-<input type="radio" name="q9" value="age"> How old are you?
-</label>
-
-<label class="option">
-<input type="radio" name="q9" value="live"> Where do you live?
-</label>
-
-<label class="option">
-<input type="radio" name="q9" value="fine"> How are you?
-</label>
-
-</div>
-
-
-<!-- 10 -->
-
-<div class="question">
-
-<h3>10. Write "My name is Anna" in German.</h3>
-
-<input type="text" id="q10">
-
-</div>
-
-
-<!-- 11 -->
-
-<div class="question">
-
-<h3>11. What is 0 in German?</h3>
-
-<input type="text" id="q11">
-
-</div>
-
-
-<!-- 12 -->
-
-<div class="question">
-
-<h3>12. What is 10 in German?</h3>
-
-<input type="text" id="q12">
-
-</div>
-
-
-<!-- 13 -->
-
-<div class="question">
-
-<h3>13. What is 20 in German?</h3>
-
-<input type="text" id="q13">
-
-</div>
-
-
-<!-- 14 -->
-
-<div class="question">
-
-<h3>14. What does "Wie alt bist du?" mean?</h3>
-
-<label class="option">
-<input type="radio" name="q14" value="age"> How old are you?
-</label>
-
-<label class="option">
-<input type="radio" name="q14" value="name"> What is your name?
-</label>
-
-<label class="option">
-<input type="radio" name="q14" value="from"> Where are you from?
-</label>
-
-<label class="option">
-<input type="radio" name="q14" value="live"> Where do you live?
-</label>
-
-</div>
-
-
-<!-- 15 -->
-
-<div class="question">
-
-<h3>15. Complete: Ich bin zehn Jahre _____.</h3>
-
-<input type="text" id="q15">
-
-</div>
-
-
-<!-- 16 -->
-
-<div class="question">
-
-<h3>16. Translate: "How are you?"</h3>
-
-<input type="text" id="q16">
-
-</div>
-
-
-<!-- 17 -->
-
-<div class="question">
-
-<h3>17. Choose the correct answer:</h3>
-
-<p>Wie geht's dir?</p>
-
-<label class="option">
-<input type="radio" name="q17" value="good">
-Mir geht's gut.
-</label>
-
-<label class="option">
-<input type="radio" name="q17" value="live">
-Ich wohne in Kairo.
-</label>
-
-<label class="option">
-<input type="radio" name="q17" value="from">
-Ich komme aus Ägypten.
-</label>
-
-<label class="option">
-<input type="radio" name="q17" value="name">
-Ich heiße Anna.
-</label>
-
-</div>
-
-
-<!-- 18 -->
-
-<div class="question">
-
-<h3>18. Translate: "I am fine."</h3>
-
-<input type="text" id="q18">
-
-</div>
-
-
-<!-- 19 -->
-
-<div class="question">
-
-<h3>19. What does "Woher kommst du?" mean?</h3>
-
-<label class="option">
-<input type="radio" name="q19" value="from">
-Where are you from?
-</label>
-
-<label class="option">
-<input type="radio" name="q19" value="live">
-Where do you live?
-</label>
-
-<label class="option">
-<input type="radio" name="q19" value="age">
-How old are you?
-</label>
-
-<label class="option">
-<input type="radio" name="q19" value="name">
-What is your name?
-</label>
-
-</div>
-
-
-<!-- 20 -->
-
-<div class="question">
-
-<h3>20. Complete: Ich komme _____ Ägypten.</h3>
-
-<input type="text" id="q20">
-
-</div>
-
-
-<!-- 21 -->
-
-<div class="question">
-
-<h3>21. What is the capital of Germany?</h3>
-
-<label class="option">
-<input type="radio" name="q21" value="Berlin"> Berlin
-</label>
-
-<label class="option">
-<input type="radio" name="q21" value="Paris"> Paris
-</label>
-
-<label class="option">
-<input type="radio" name="q21" value="Madrid"> Madrid
-</label>
-
-<label class="option">
-<input type="radio" name="q21" value="Rome"> Rome
-</label>
-
-</div>
-
-
-<!-- 22 -->
-
-<div class="question">
-
-<h3>22. What does "Wo wohnst du?" mean?</h3>
-
-<label class="option">
-<input type="radio" name="q22" value="live">
-Where do you live?
-</label>
-
-<label class="option">
-<input type="radio" name="q22" value="from">
-Where are you from?
-</label>
-
-<label class="option">
-<input type="radio" name="q22" value="name">
-What is your name?
-</label>
-
-<label class="option">
-<input type="radio" name="q22" value="age">
-How old are you?
-</label>
-
-</div>
-
-
-<!-- 23 -->
-
-<div class="question">
-
-<h3>23. Complete: Ich wohne _____ Kairo.</h3>
-
-<input type="text" id="q23">
-
-</div>
-
-
-<!-- 24 -->
-
-<div class="question">
-
-<h3>24. Translate: "I live in Cairo."</h3>
-
-<input type="text" id="q24">
-
-</div>
-
-
-<!-- 25 -->
-
-<div class="question">
-
-<h3>25. Arrange the words:</h3>
-
-<p><b>du / heißt / Wie</b></p>
-
-<input type="text" id="q25">
-
-</div>
-
-
-<!-- 26 -->
-
-<div class="question">
-
-<h3>26. Arrange the words:</h3>
-
-<p><b>bist / alt / du / Wie</b></p>
-
-<input type="text" id="q26">
-
-</div>
-
-
-<!-- 27 -->
-
-<div class="question">
-
-<h3>27. What is "food" in German?</h3>
-
-<input type="text" id="q27">
-
-</div>
-
-
-<!-- 28 -->
-
-<div class="question">
-
-<h3>28. What is "water" in German?</h3>
-
-<input type="text" id="q28">
-
-</div>
-
-
-<!-- 29 -->
-
-<div class="question">
-
-<h3>29. What is "to drink" in German?</h3>
-
-<label class="option">
-<input type="radio" name="q29" value="trinken"> trinken
-</label>
-
-<label class="option">
-<input type="radio" name="q29" value="essen"> essen
-</label>
-
-<label class="option">
-<input type="radio" name="q29" value="wohnen"> wohnen
-</label>
-
-<label class="option">
-<input type="radio" name="q29" value="gehen"> gehen
-</label>
-
-</div>
-
-
-<!-- 30 -->
-
-<div class="question">
-
-<h3>30. What is "to eat" in German?</h3>
-
-<label class="option">
-<input type="radio" name="q30" value="essen"> essen
-</label>
-
-<label class="option">
-<input type="radio" name="q30" value="trinken"> trinken
-</label>
-
-<label class="option">
-<input type="radio" name="q30" value="gehen"> gehen
-</label>
-
-<label class="option">
-<input type="radio" name="q30" value="kommen"> kommen
-</label>
-
-</div>
-
-
-<!-- 31 -->
-
-<div class="question">
-
-<h3>31. Translate: "Bathroom, please."</h3>
-
-<input type="text" id="q31">
-
-</div>
-
-
-<!-- 32 -->
-
-<div class="question">
-
-<h3>32. Translate: "Can I go to the bathroom?"</h3>
-
-<input type="text" id="q32">
-
-</div>
-
-
-<!-- 33 -->
-
-<div class="question">
-
-<h3>33. Match: der Stuhl</h3>
-
-<label class="option">
-<input type="radio" name="q33" value="chair"> Chair 🪑
-</label>
-
-<label class="option">
-<input type="radio" name="q33" value="book"> Book 📖
-</label>
-
-<label class="option">
-<input type="radio" name="q33" value="bag"> Bag 🎒
-</label>
-
-<label class="option">
-<input type="radio" name="q33" value="money"> Money 💵
-</label>
-
-</div>
-
-
-<!-- 34 -->
-
-<div class="question">
-
-<h3>34. Match: die Brille</h3>
-
-<label class="option">
-<input type="radio" name="q34" value="glasses"> Glasses 👓
-</label>
-
-<label class="option">
-<input type="radio" name="q34" value="chair"> Chair 🪑
-</label>
-
-<label class="option">
-<input type="radio" name="q34" value="money"> Money 💵
-</label>
-
-<label class="option">
-<input type="radio" name="q34" value="bag"> Bag 🎒
-</label>
-
-</div>
-
-
-<!-- 35 -->
-
-<div class="question">
-
-<h3>35. Match: das Geld</h3>
-
-<label class="option">
-<input type="radio" name="q35" value="money"> Money 💵
-</label>
-
-<label class="option">
-<input type="radio" name="q35" value="book"> Book 📖
-</label>
-
-<label class="option">
-<input type="radio" name="q35" value="chair"> Chair 🪑
-</label>
-
-<label class="option">
-<input type="radio" name="q35" value="glasses"> Glasses 👓
-</label>
-
-</div>
-
-
-<!-- LISTENING -->
-
-<div class="question">
-
-<h3>🎧 Listening — Questions 36–40</h3>
-
-<p>Listen carefully before answering.</p>
-
-<button onclick="playListening()">
-🔊 Play Listening
-</button>
-
-<div class="listenBox">
-
-The listening text will be read aloud in German.
-
-</div>
-
-</div>
-
-
-<!-- 36 -->
-
-<div class="question">
-
-<h3>36. What is the girl's name?</h3>
-
-<label class="option">
-<input type="radio" name="q36" value="Anna"> Anna
-</label>
-
-<label class="option">
-<input type="radio" name="q36" value="Maria"> Maria
-</label>
-
-<label class="option">
-<input type="radio" name="q36" value="Sara"> Sara
-</label>
-
-<label class="option">
-<input type="radio" name="q36" value="Lena"> Lena
-</label>
-
-</div>
-
-
-<!-- 37 -->
-
-<div class="question">
-
-<h3>37. How old is she?</h3>
-
-<label class="option">
-<input type="radio" name="q37" value="8"> 8
-</label>
-
-<label class="option">
-<input type="radio" name="q37" value="10"> 10
-</label>
-
-<label class="option">
-<input type="radio" name="q37" value="12"> 12
-</label>
-
-<label class="option">
-<input type="radio" name="q37" value="15"> 15
-</label>
-
-</div>
-
-
-<!-- 38 -->
-
-<div class="question">
-
-<h3>38. Where is she from?</h3>
-
-<label class="option">
-<input type="radio" name="q38" value="Egypt"> Egypt
-</label>
-
-<label class="option">
-<input type="radio" name="q38" value="Germany"> Germany
-</label>
-
-<label class="option">
-<input type="radio" name="q38" value="Spain"> Spain
-</label>
-
-<label class="option">
-<input type="radio" name="q38" value="France"> France
-</label>
-
-</div>
-
-
-<!-- 39 -->
-
-<div class="question">
-
-<h3>39. Where does she live?</h3>
-
-<label class="option">
-<input type="radio" name="q39" value="Cairo"> Cairo
-</label>
-
-<label class="option">
-<input type="radio" name="q39" value="Berlin"> Berlin
-</label>
-
-<label class="option">
-<input type="radio" name="q39" value="Paris"> Paris
-</label>
-
-<label class="option">
-<input type="radio" name="q39" value="Madrid"> Madrid
-</label>
-
-</div>
-
-
-<!-- 40 -->
-
-<div class="question">
-
-<h3>40. How is she?</h3>
-
-<label class="option">
-<input type="radio" name="q40" value="Fine"> Fine
-</label>
-
-<label class="option">
-<input type="radio" name="q40" value="Bad"> Bad
-</label>
-
-<label class="option">
-<input type="radio" name="q40" value="Tired"> Tired
-</label>
-
-<label class="option">
-<input type="radio" name="q40" value="Sad"> Sad
-</label>
-
-</div>
-
-
-<!-- 41 -->
-
-<div class="question">
-
-<h3>41. Translate: "What is your name?"</h3>
-
-<input type="text" id="q41">
-
-</div>
-
-
-<!-- 42 -->
-
-<div class="question">
-
-<h3>42. Translate: "I come from Egypt."</h3>
-
-<input type="text" id="q42">
-
-</div>
-
-
-<!-- 43 -->
-
-<div class="question">
-
-<h3>43. Translate: "I am ten years old."</h3>
-
-<input type="text" id="q43">
-
-</div>
-
-
-<!-- 44 -->
-
-<div class="question">
-
-<h3>44. Complete:</h3>
-
-<p>Mir geht's _____.</p>
-
-<input type="text" id="q44">
-
-</div>
-
-
-<!-- 45 -->
-
-<div class="question">
-
-<h3>45. Complete:</h3>
-
-<p>Woher _____ du?</p>
-
-<input type="text" id="q45">
-
-</div>
-
-
-<!-- 46 -->
-
-<div class="question">
-
-<h3>46. Write the German word for "book".</h3>
-
-<input type="text" id="q46">
-
-</div>
-
-
-<!-- 47 -->
-
-<div class="question">
-
-<h3>47. Write the German word for "bag".</h3>
-
-<input type="text" id="q47">
-
-</div>
-
-
-<!-- 48 -->
-
-<div class="question">
-
-<h3>48. Write the German word for "chair".</h3>
-
-<input type="text" id="q48">
-
-</div>
-
-
-<!-- 49 -->
-
-<div class="question">
-
-<h3>49. Translate:</h3>
-
-<p><b>Guten Morgen!</b></p>
-
-<input type="text" id="q49">
-
-</div>
-
-
-<!-- 50 -->
-
-<div class="question">
-
-<h3>50. 📄 Schreiben — Write about yourself</h3>
-
-<p>
-
-Write a short paragraph in German.
-
-</p>
-
-<p>
-
-Include:
-
-<br>• Your name
-<br>• Your age
-<br>• Where you are from
-<br>• Where you live
-<br>• How you are
-
-</p>
-
-<textarea id="q50"
-placeholder="Schreibe über dich..."></textarea>
-
-</div>
-
-
-<div id="submitBox">
-
-<button onclick="submitExam()">
-📝 Submit Exam
-</button>
-
-</div>
-
-</div>
-
-
-<!-- ================= RESULT ================= -->
-
-<div id="result">
-
-<div class="info">
-
-<h1>🏆 Exam Finished!</h1>
-
-<h2 id="score"></h2>
-
-<p id="message"></p>
-
-<p>📄 Question 50 (Paragraph) is reviewed separately.</p>
-
-<button onclick="location.reload()">
-🔄 Take Exam Again
-</button>
-
-</div>
-
-</div>
-
-
-<script>
-
-/* ================= TIMER ================= */
-
-let time = 90 * 60;
-
-let timerInterval = null;
-
-let submitted = false;
-
-
-/* ================= START EXAM ================= */
-
-function startExam(){
-
-document.getElementById("start").style.display="none";
-
-document.getElementById("exam").style.display="block";
-
-timerInterval = setInterval(updateTimer,1000);
-
-}
-
-
-/* ================= TIMER ================= */
-
-function updateTimer(){
-
-let minutes = Math.floor(time / 60);
-
-let seconds = time % 60;
-
-document.getElementById("timer").innerHTML =
-"⏱️ Time: " +
-String(minutes).padStart(2,"0") +
-":" +
-String(seconds).padStart(2,"0");
-
-
-if(time <= 0){
-
-clearInterval(timerInterval);
-
-alert("⏰ Time is over! Your exam will be submitted.");
-
-submitExam();
-
+if(submitted){
 return;
-
 }
 
-time--;
-
-}
-
-
-/* ================= LISTENING ================= */
-
-function playListening(){
-
-let text =
-"Hallo! Ich heiße Anna. Ich bin zehn Jahre alt. Ich komme aus Ägypten. Ich wohne in Kairo. Mir geht's gut.";
-
-let speech = new SpeechSynthesisUtterance(text);
-
-speech.lang = "de-DE";
-
-speech.rate = 0.8;
-
-speechSynthesis.cancel();
-
-speechSynthesis.speak(speech);
-
-}
-
-
-/* ================= RADIO ================= */
-
-function getRadio(number){
-
-let answer = document.querySelector(
-'input[name="q'+number+'"]:checked'
-);
-
-return answer ? answer.value : "";
-
-}
-
-
-/* ================= NORMALIZE ================= */
-
-function normalize(answer){
-
-return answer
-.toLowerCase()
-.trim()
-.replace(/[.!?]/g,"")
-.replace(/\s+/g," ");
-
-}
-
-
-/* ================= SUBMIT ================= */
-
-function submitExam(){
-
-if(submitted) return;
-
-submitted = true;
+submitted=true;
 
 clearInterval(timerInterval);
 
-let score = 0;
+let score=0;
+
 
 
 /* 1 */
 
-if(getRadio(1) === "B") score++;
+if(getRadio(1)==="B") score++;
 
 
 /* 2 */
 
-if(getRadio(2) === "C") score++;
+if(getRadio(2)==="C") score++;
 
 
 /* 3 */
 
-if(getRadio(3) === "N") score++;
+if(getRadio(3)==="ai") score++;
 
 
 /* 4 */
 
-if(getRadio(4) === "Y") score++;
+if(getRadio(4)==="Goodbye") score++;
 
 
 /* 5 */
 
-if(getRadio(5) === "ai") score++;
+if(getRadio(5)==="Good morning") score++;
 
 
 /* 6 */
 
-if(getRadio(6) === "Goodbye") score++;
+if(normalize(document.getElementById("q6").value)==="heißt")
+score++;
 
 
 /* 7 */
 
-if(getRadio(7) === "Good morning") score++;
+if(getRadio(7)==="What is your name?")
+score++;
 
 
 /* 8 */
 
-if(normalize(document.getElementById("q8").value) === "heißt")
+if(normalize(document.getElementById("q8").value)==="mein name ist anna")
 score++;
 
 
 /* 9 */
 
-if(getRadio(9) === "name") score++;
+if(normalize(document.getElementById("q9").value)==="null")
+score++;
 
 
 /* 10 */
 
-if(normalize(document.getElementById("q10").value) === "mein name ist anna")
-score++;
+if(getRadio(10)==="zehn") score++;
 
 
 /* 11 */
 
-if(normalize(document.getElementById("q11").value) === "null")
+if(normalize(document.getElementById("q11").value)==="zwanzig")
 score++;
 
 
 /* 12 */
 
-if(normalize(document.getElementById("q12").value) === "zehn")
+if(getRadio(12)==="How old are you?")
 score++;
 
 
 /* 13 */
 
-if(normalize(document.getElementById("q13").value) === "zwanzig")
+if(normalize(document.getElementById("q13").value)==="alt")
 score++;
 
 
 /* 14 */
 
-if(getRadio(14) === "age") score++;
+if(normalize(document.getElementById("q14").value)==="wie geht's dir")
+score++;
 
 
 /* 15 */
 
-if(normalize(document.getElementById("q15").value) === "alt")
-score++;
+if(getRadio(15)==="Mir geht's gut.") score++;
 
 
 /* 16 */
 
-if(normalize(document.getElementById("q16").value) === "wie geht's dir")
+if(normalize(document.getElementById("q16").value)==="mir geht's gut")
 score++;
 
 
 /* 17 */
 
-if(getRadio(17) === "good") score++;
+if(getRadio(17)==="Where are you from?") score++;
 
 
 /* 18 */
 
-if(normalize(document.getElementById("q18").value) === "mir geht's gut")
+if(normalize(document.getElementById("q18").value)==="aus")
 score++;
 
 
 /* 19 */
 
-if(getRadio(19) === "from") score++;
-
-
-/* 20 */
-
-if(normalize(document.getElementById("q20").value) === "aus")
-score++;
-
-
-/* 21 */
-
-if(getRadio(21) === "Berlin") score++;
-
-
-/* 22 */
-
-if(getRadio(22) === "live") score++;
-
-
-/* 23 */
-
-if(normalize(document.getElementById("q23").value) === "in")
-score++;
-
-
-/* 24 */
-
-if(normalize(document.getElementById("q24").value) === "ich wohne in kairo")
-score++;
-
-
-/* 25 */
-
-if(normalize(document.getElementById("q25").value) === "wie heißt du")
-score
+if(getRadio(19)==="Berl
